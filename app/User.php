@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
+use App\Autopista;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,26 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Autopistas asignadas a este usuario.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function autopistas()
+    {
+        return $this->belongsToMany(Autopista::class, 'autopista_user')->withTimestamps();
+    }
+
+    /**
+     * Asigna autopistas a este usuario.
+     *
+     * @param [type] $autopista [description]
+     *
+     * @return [type] [description]
+     */
+    public function asignaAutopista($autopista)
+    {
+        $this->autopistas()->attach($autopista);
+    }
 }

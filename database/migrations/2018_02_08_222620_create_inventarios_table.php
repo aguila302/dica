@@ -16,19 +16,19 @@ class CreateInventariosTable extends Migration
         Schema::create('inventarios', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('autopista_id');
-            $table->unsignedInteger('cuerpo_id');
             $table->unsignedInteger('elemento_id');
             $table->unsignedInteger('tipo_elemento_id');
-            $table->unsignedInteger('condicion_id');
-            $table->decimal('longitud_elemento', 8, 2);
-            $table->unsignedInteger('carril_id');
-            $table->integer('cadenamiento_inicial');
-            $table->integer('cadenamiento_final');
-            $table->boolean('reportar');
-            $table->text('observaciones');
-            $table->text('recomendaciones');
-            $table->string('estatus');
-            $table->string('seguimiento');
+            $table->unsignedInteger('cuerpo_id');
+            // $table->unsignedInteger('condicion_id');
+            // $table->unsignedDecimal('longitud_elemento', 8, 2)->nullable();
+            // $table->unsignedInteger('carril_id');
+            // $table->integer('cadenamiento_inicial')->nullable();
+            // $table->integer('cadenamiento_final')->nullable();
+            // $table->boolean('reportar')->nullable();
+            // $table->text('observaciones')->nullable();
+            // $table->text('recomendaciones')->nullable();
+            // $table->string('estatus')->nullable();
+            // $table->string('seguimiento')->nullable();
 
             $table->foreign('autopista_id')
                 ->references('id')->on('autopistas')
@@ -42,17 +42,17 @@ class CreateInventariosTable extends Migration
                 ->references('id')->on('elementos')
                 ->onDelete('cascade');
 
-            $table->foreign('tipo_elemento_id')
-                ->references('id')->on('tipo_elementos')
-                ->onDelete('cascade');
+            // $table->foreign('tipo_elemento_id')
+            //     ->references('id')->on('tipo_elementos')
+            //     ->onDelete('cascade');
 
-            $table->foreign('condicion_id')
-                ->references('id')->on('condicions')
-                ->onDelete('cascade');
+            // $table->foreign('condicion_id')
+            //     ->references('id')->on('condicions')
+            //     ->onDelete('cascade');
 
-            $table->foreign('carril_id')
-                ->references('id')->on('carrils')
-                ->onDelete('cascade');
+            // $table->foreign('carril_id')
+            //     ->references('id')->on('carrils')
+            //     ->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -90,3 +90,34 @@ $factory->define(App\TipoElemento::class, function (Faker $faker) {
 //         'elemento_id' => $elemento->id,
 //     ]);
 // });
+
+$factory->define(App\Inventario::class, function (Faker $faker) {
+    return [
+        'autopista_id'     => function () {
+            return factory(App\Autopista::class)->create()->id;
+        },
+        'elemento_id'      => function () {
+            return factory(App\Elemento::class)->create()->id;
+        },
+        'tipo_elemento_id' => function () {
+            return factory(App\TipoElemento::class)->create()->id;
+        },
+        'cuerpo_id'        => function () {
+            return factory(App\Cuerpo::class)->create()->id;
+        },
+        // 'condicion_id'         => function () {
+        //     return factory(App\Condicion::class)->create()->id;
+        // },
+        // 'longitud_elemento'    => $faker->randomFloat($nbMaxDecimals = 2, $min = 6, $max = 14),
+        // 'carril_id'            => function () {
+        //     return factory(App\Carril::class)->create()->id;
+        // },
+        // 'cadenamiento_inicial' => $faker->numberBetween($min = 100, $max = 300),
+        // 'cadenamiento_final'   => $faker->numberBetween($min = 300, $max = 700),
+        // 'reportar'             => true,
+        // 'observaciones'        => $faker->sentence,
+        // 'recomendaciones'      => $faker->sentence,
+        // 'estatus'              => $faker->randomElement($array = array('0', '1')),
+        // 'seguimiento'          => $faker->randomElement($array = array('0', '1')),
+    ];
+});
