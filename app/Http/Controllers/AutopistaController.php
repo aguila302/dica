@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Autopista;
+use App\User;
 use Illuminate\Http\Request;
 
 class AutopistaController extends Controller
@@ -14,7 +14,9 @@ class AutopistaController extends Controller
      */
     public function index()
     {
-        //
+        $autopistas = User::get();
+
+        return view('autopistas.index')->withAutopistas($autopistas);
     }
 
     /**

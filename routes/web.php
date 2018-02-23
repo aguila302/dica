@@ -15,4 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('autopista', 'AutopistaController');
+Route::resource('autopistas', 'AutopistaController');
+
+Auth::routes();
+
+Route::get('inicio', 'HomeController@index')->name('inicio');

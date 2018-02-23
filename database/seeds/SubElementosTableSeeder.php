@@ -1,8 +1,9 @@
 <?php
 
+use App\Elemento;
 use Illuminate\Database\Seeder;
 
-class TipoElementosTableSeeder extends Seeder
+class SubElementosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +12,8 @@ class TipoElementosTableSeeder extends Seeder
      */
     public function run()
     {
-        App\Elemento::each(function ($elemento) {
-            factory(App\TipoElemento::class, 5)->create([
+        Elemento::each(function ($elemento) {
+            factory(App\SubElemento::class, 5)->create([
                 'elemento_id' => $elemento->id,
             ]);
         });

@@ -13,7 +13,7 @@ class CreateTipoElementosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_elementos', function (Blueprint $table) {
+        Schema::create('sub_elementos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descripcion', 200);
             $table->unsignedInteger('elemento_id');
@@ -32,6 +32,6 @@ class CreateTipoElementosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_elementos');
+        Schema::dropIfExists('sub_elementos');
     }
 }

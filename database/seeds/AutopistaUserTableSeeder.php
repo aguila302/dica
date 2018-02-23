@@ -13,10 +13,9 @@ class AutopistaUserTableSeeder extends Seeder
      */
     public function run()
     {
-        Autopista::each(function ($autopista) {
-            User::each(function ($user) use ($autopista) {
-                $user->asignaAutopista($autopista);
-            });
+        User::each(function ($user) {
+            $autopista = Autopista::get()->take(rand(2, 9));
+            $user->asignaAutopista($autopista);
         });
     }
 }

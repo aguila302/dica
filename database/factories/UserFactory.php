@@ -53,17 +53,6 @@ $factory->define(App\Condicion::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(App\AutopistaElemento::class, function (Faker $faker) {
-    return [
-        'autopista_id' => function () {
-            return factory(App\Autopista::class)->create()->id;
-        },
-        'elemento_id'  => function () {
-            return factory(App\Elemento::class)->create()->id;
-        },
-    ];
-});
-
 // $autopistas = factory(App\Autopista::class, 5)->create();
 // $elementos  = factory(App\Elemento::class, 5)->create();
 
@@ -76,7 +65,7 @@ $factory->define(App\AutopistaElemento::class, function (Faker $faker) {
 //     });
 // });
 
-$factory->define(App\TipoElemento::class, function (Faker $faker) {
+$factory->define(App\SubElemento::class, function (Faker $faker) {
     return [
         'descripcion' => $faker->sentence($nbWords = 4, $variableNbWords = true),
         'elemento_id' => function () {
@@ -93,31 +82,31 @@ $factory->define(App\TipoElemento::class, function (Faker $faker) {
 
 $factory->define(App\Inventario::class, function (Faker $faker) {
     return [
-        'autopista_id'     => function () {
+        'autopista_id'         => function () {
             return factory(App\Autopista::class)->create()->id;
         },
-        'elemento_id'      => function () {
+        'elemento_id'          => function () {
             return factory(App\Elemento::class)->create()->id;
         },
-        'tipo_elemento_id' => function () {
-            return factory(App\TipoElemento::class)->create()->id;
+        'subelemento_id'       => function () {
+            return factory(App\SubElemento::class)->create()->id;
         },
-        'cuerpo_id'        => function () {
+        'cuerpo_id'            => function () {
             return factory(App\Cuerpo::class)->create()->id;
         },
-        // 'condicion_id'         => function () {
-        //     return factory(App\Condicion::class)->create()->id;
-        // },
-        // 'longitud_elemento'    => $faker->randomFloat($nbMaxDecimals = 2, $min = 6, $max = 14),
-        // 'carril_id'            => function () {
-        //     return factory(App\Carril::class)->create()->id;
-        // },
-        // 'cadenamiento_inicial' => $faker->numberBetween($min = 100, $max = 300),
-        // 'cadenamiento_final'   => $faker->numberBetween($min = 300, $max = 700),
-        // 'reportar'             => true,
-        // 'observaciones'        => $faker->sentence,
-        // 'recomendaciones'      => $faker->sentence,
-        // 'estatus'              => $faker->randomElement($array = array('0', '1')),
-        // 'seguimiento'          => $faker->randomElement($array = array('0', '1')),
+        'condicion_id'         => function () {
+            return factory(App\Condicion::class)->create()->id;
+        },
+        'carril_id'            => function () {
+            return factory(App\Carril::class)->create()->id;
+        },
+        'longitud_elemento'    => $faker->randomFloat($nbMaxDecimals = 2, $min = 6, $max = 14),
+        'cadenamiento_inicial' => $faker->numberBetween($min = 100, $max = 300),
+        'cadenamiento_final'   => $faker->numberBetween($min = 300, $max = 700),
+        'reportar'             => true,
+        'observaciones'        => $faker->sentence,
+        'recomendaciones'      => $faker->sentence,
+        'estatus'              => $faker->randomElement($array = array('0', '1')),
+        'seguimiento'          => $faker->randomElement($array = array('0', '1')),
     ];
 });
