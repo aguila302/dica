@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Autopista;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -24,8 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users      = Auth::user();
-        $autopistas = $users->autopistas->sortBy('nombre');
+        $user = Auth::user();
+        $rol  = $user->hasRole('admin');
+        if ($rol) {
+            $autopistas = Autopista::get()->sortByDesc('nombre');
+        } else {
+            $autopistas = $user->autopistas->sortByDesc('nombre');
+        }
         return view('autopistas.index')->withAutopistas($autopistas);
     }
 }

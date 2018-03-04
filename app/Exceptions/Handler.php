@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 
 class Handler extends ExceptionHandler
 {
@@ -36,6 +37,9 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        // if (app()->environment() === 'testing') {
+        //     throw $exception;
+        // }
         parent::report($exception);
     }
 
@@ -48,6 +52,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+            flash('El usuario no tiene los roles correctos')->error();
+            // flash()->overlay('You are now a Laracasts member!', 'Yay');
+            return back();
+        }
         return parent::render($request, $exception);
     }
 }

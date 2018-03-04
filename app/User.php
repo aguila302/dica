@@ -5,10 +5,11 @@ namespace App;
 use App\Autopista;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -48,5 +49,17 @@ class User extends Authenticatable
     public function asignaAutopista($autopista)
     {
         $this->autopistas()->attach($autopista);
+    }
+
+    /**
+     * Quita aautopistas asignadas a este usuario.
+     *
+     * @param [type] $autopista [description]
+     *
+     * @return [type] [description]
+     */
+    public function quitaAutopista($autopista)
+    {
+        $this->autopistas()->detach($autopista);
     }
 }

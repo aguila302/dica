@@ -7,7 +7,7 @@ use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class AutopistaTest extends TestCase
+class VerListadoAutopistas extends TestCase
 {
     use DatabaseMigrations;
 
@@ -22,6 +22,4 @@ class AutopistaTest extends TestCase
             ->visit('/autopistas')
             ->see($autopista->nombre);
     }
-
-    /** @test */
 }
