@@ -20,7 +20,7 @@ class AutopistaController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Muestra un listado de las autopistas.
      *
      * @return \Illuminate\Http\Response
      */
@@ -29,15 +29,15 @@ class AutopistaController extends Controller
         $user = Auth::user();
         $rol  = $user->hasRole('admin');
         if ($rol) {
-            $autopistas = Autopista::get()->sortByDesc('nombre');
+            $autopistas = Autopista::latest()->paginate(10);
         } else {
-            $autopistas = $user->autopistas->sortByDesc('nombre');
+            $autopistas = Autopista::with('usuarios')->paginate(5);
         }
         return view('autopistas.index')->withAutopistas($autopistas);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra un formulario para crear una autopista.
      *
      * @return \Illuminate\Http\Response
      */
@@ -47,19 +47,29 @@ class AutopistaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Crea una autopista en el origen de datos.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $autopista                       = new Autopista;
-        $autopista->nombre               = $request->nombre;
-        $autopista->cadenamiento_inicial = $request->cadenamiento_inicial;
-        $autopista->cadenamiento_final   = $request->cadenamiento_final;
+        $request->validate([
+            'nombre'                  => 'required',
+            'cadenamiento_inicial_km' => 'required|numeric|min:0|digits:3',
+            'cadenamiento_inicial_m'  => 'required|numeric|min:0|digits:3',
+            'cadenamiento_final_km'   => 'required|numeric|min:' . $request->cadenamiento_inicial_km . '|digits:3',
+            'cadenamiento_final_m'    => 'required|numeric|min:0|digits:3',
+        ]);
+
+        $autopista                          = new Autopista;
+        $autopista->nombre                  = $request->nombre;
+        $autopista->cadenamiento_inicial_km = $request->cadenamiento_inicial_km;
+        $autopista->cadenamiento_inicial_m  = $request->cadenamiento_inicial_m;
+        $autopista->cadenamiento_final_km   = $request->cadenamiento_final_km;
+        $autopista->cadenamiento_final_m    = $request->cadenamiento_final_m;
         $autopista->save();
-        return redirect()->route('autopistas.index');
+        return redirect('/autopistas');
     }
 
     /**

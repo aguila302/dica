@@ -18,7 +18,7 @@ class IniciarSesionTest extends TestCase
         $this->visit('/login')
             ->type($user->email, 'email')
             ->type('secret', 'password')
-            ->press('Login')
+            ->press('Iniciar sesión')
             ->seePageIs('inicio');
     }
 
@@ -28,7 +28,7 @@ class IniciarSesionTest extends TestCase
         $this->visit('/login')
             ->type('ponches.ah@gmail.com', 'email')
             ->type('ponches', 'password')
-            ->press('Login')
+            ->press('Iniciar sesión')
             ->seePageIs('login');
     }
 }

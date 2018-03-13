@@ -10,4 +10,10 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
     public $baseUrl = 'http://localhost';
+
+    protected function signIn($user)
+    {
+        $this->actingAs($user);
+        return $this;
+    }
 }

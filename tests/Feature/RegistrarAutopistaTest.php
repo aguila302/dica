@@ -2,10 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class RegistrarAutopistaTest extends TestCase
@@ -15,18 +12,16 @@ class RegistrarAutopistaTest extends TestCase
     /** @test */
     public function usuario_admin_puede_registrar_autopista()
     {
-        $role       = Role::create(['name' => 'admin']);
-        $permission = Permission::create(['name' => 'nueva autopista']);
-        $role->givePermissionTo($permission);
+        $user = createUserAdmin();
 
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
+        $this->signIn($user);
 
-        $this->actingAs($user)
-            ->visit('/autopistas/registrar')
+        $this->visit('/autopistas/registrar')
             ->type('México - Pachuca', 'nombre')
-            ->type('000', 'cadenamiento_inicial')
-            ->type('678', 'cadenamiento_final')
+            ->type('030', 'cadenamiento_inicial_km')
+            ->type('120', 'cadenamiento_inicial_m')
+            ->type('233', 'cadenamiento_final_km')
+            ->type('023', 'cadenamiento_final_m')
             ->press('Guardar')
             ->seePageIs('/autopistas');
     }
@@ -34,6 +29,35 @@ class RegistrarAutopistaTest extends TestCase
     /** @test */
     public function usuario_visitante_no_puede_registrar_autopista()
     {
+        //$user = createUserVisitante();
 
+        //$this->signIn($user);
+
+        $response = $this->call('GET', 'autopistas/registrar');
+        $this->assertRedirectedTo('autopistas');
+
+        // $user = createUserVisitante();
+
+        // $this->signIn($user);
+        // $this->visit('/autopistas')
+        //     ->dontSee('Nueva autopista');
     }
+
+    /** @test */
+    // public function el_nombre_es_requerido()
+    // {
+    //     $user = createUserAdmin();
+    //     $this->signIn($user);
+
+    //     $response = $this->call('POST', 'autopistas', [
+    //         'nombre'                  => '',
+    //         'cadenamiento_inicial_km' => '221',
+    //         'cadenamiento_inicial_m'  => '045',
+    //         'cadenamiento_final_km'   => '234',
+    //         'cadenamiento_final_m'    => '012',
+    //     ]);
+    //     $this->assertSessionHasErrors(['nombre']);
+
+    //     $this->assertEquals(0, Autopista::count());
+    // }
 }

@@ -14,12 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+// Route::get('/', 'HomeController@index');
 // Route::resource('autopistas', 'AutopistaController');
 
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
+    // Route::get('/', 'HomeController@index');
     Route::get('inicio', 'HomeController@index')->name('inicio');
     Route::get('autopistas', 'AutopistaController@index')->name('autopistas.index');
     Route::get('autopistas/registrar', 'AutopistaController@create')->name('autopistas.create')->middleware('role:admin');

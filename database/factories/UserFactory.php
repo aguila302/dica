@@ -23,9 +23,12 @@ $factory->define(App\User::class, function (Faker $faker) {
 
 $factory->define(App\Autopista::class, function (Faker $faker) {
     return [
-        'nombre'               => $faker->streetAddress,
-        'cadenamiento_inicial' => $faker->numberBetween($min = 100, $max = 300),
-        'cadenamiento_final'   => $faker->numberBetween($min = 300, $max = 700),
+        'nombre'                  => $faker->streetAddress,
+        'cadenamiento_inicial_km' => $faker->numberBetween($min = 100, $max = 300),
+        'cadenamiento_inicial_m'  => $faker->numberBetween($min = 100, $max = 400),
+
+        'cadenamiento_final_km'   => $faker->numberBetween($min = 300, $max = 500),
+        'cadenamiento_final_m'    => $faker->numberBetween($min = 100, $max = 400),
     ];
 });
 

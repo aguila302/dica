@@ -27,9 +27,9 @@ class HomeController extends Controller
         $user = Auth::user();
         $rol  = $user->hasRole('admin');
         if ($rol) {
-            $autopistas = Autopista::get()->sortByDesc('nombre');
+            $autopistas = Autopista::latest()->paginate(10);
         } else {
-            $autopistas = $user->autopistas->sortByDesc('nombre');
+            $autopistas = Autopista::with('usuarios')->paginate(5);
         }
         return view('autopistas.index')->withAutopistas($autopistas);
     }
