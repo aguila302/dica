@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Autopista;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -29,35 +30,35 @@ class RegistrarAutopistaTest extends TestCase
     /** @test */
     public function usuario_visitante_no_puede_registrar_autopista()
     {
-        //$user = createUserVisitante();
+        $user = createUserVisitante();
 
-        //$this->signIn($user);
-
-        $response = $this->call('GET', 'autopistas/registrar');
-        $this->assertRedirectedTo('autopistas');
-
-        // $user = createUserVisitante();
-
-        // $this->signIn($user);
-        // $this->visit('/autopistas')
-        //     ->dontSee('Nueva autopista');
+        $this->signIn($user);
+        $this->visit('/autopistas')
+            ->dontSee('Nueva autopista');
     }
 
     /** @test */
-    // public function el_nombre_es_requerido()
-    // {
-    //     $user = createUserAdmin();
-    //     $this->signIn($user);
+    public function visitante_no_puede_ver_pagina_crear_autopista()
+    {
+        $this->withExceptionHandling()
+            ->get('/autopistas/registrar')
+            ->assertRedirectedTo('/login');
+    }
 
-    //     $response = $this->call('POST', 'autopistas', [
-    //         'nombre'                  => '',
-    //         'cadenamiento_inicial_km' => '221',
-    //         'cadenamiento_inicial_m'  => '045',
-    //         'cadenamiento_final_km'   => '234',
-    //         'cadenamiento_final_m'    => '012',
-    //     ]);
-    //     $this->assertSessionHasErrors(['nombre']);
+    /** @test */
+    public function el_nombre_es_requerido()
+    {
+        $this->registrarAutopista(['nombre' => null])
+            ->assertSessionHasErrors(['nombre']);
+    }
 
-    //     $this->assertEquals(0, Autopista::count());
-    // }
+    public function registrarAutopista($atributos = [])
+    {
+        $user = createUserAdmin();
+        $this->withExceptionHandling()->signIn($user);
+
+        $autopista = factory(Autopista::class)->make($atributos);
+
+        return $this->post('autopistas', $autopista->toArray());
+    }
 }

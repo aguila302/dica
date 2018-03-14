@@ -38,7 +38,7 @@
                                     <td>{{ $autopista->cadenamiento_inicial_km }} + {{ $autopista->cadenamiento_inicial_m }}</td>
                                     <td>{{ $autopista->cadenamiento_final_km }} + {{ $autopista->cadenamiento_final_m }}</td>
                                     <td>
-                                        <a class="#" href="#item-3-1">Editar</a>
+                                        <a href="{{ route('autopistas.edit', $autopista) }}">Editar</a>
                                     </td>
                                     <td>
                                         <a class="#" href="#item-3-1">Eliminar</a>

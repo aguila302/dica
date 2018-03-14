@@ -25,10 +25,12 @@ class IniciarSesionTest extends TestCase
     /** @test */
     public function user_no_registrado_no_puede_iniciar_sesion()
     {
+
+        $this->withExceptionHandling();
         $this->visit('/login')
             ->type('ponches.ah@gmail.com', 'email')
             ->type('ponches', 'password')
             ->press('Iniciar sesión')
-            ->seePageIs('login');
+            ->seePageIs('/login');
     }
 }
