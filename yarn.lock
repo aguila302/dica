@@ -57,9 +57,9 @@ adjust-sourcemap-loader@^1.1.0:
     object-path "^0.9.2"
     regex-parser "^2.2.1"
 
-admin-lte@^2.4.2:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/admin-lte/-/admin-lte-2.4.2.tgz#6a2928fa34715881eb69a09b64dbccc8d5fae539"
+admin-lte@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/admin-lte/-/admin-lte-2.4.3.tgz#413d22adbbb5019317f2dcd736076d01d3ca47a6"
   dependencies:
     bootstrap "^3.3.7"
     bootstrap-colorpicker "^2.5.1"
@@ -1044,18 +1044,6 @@ bootstrap-timepicker@^0.5.2:
 bootstrap@^3.3.7:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
-
-bootstrap@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0.tgz#ceb03842c145fcc1b9b4e15da2a05656ba68469a"
-
-bootswatch@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/bootswatch/-/bootswatch-4.0.0.tgz#dfcab028c03c09a58888d37d7ce9f6c8c33498cc"
-  dependencies:
-    bootstrap "^4.0.0"
-    jquery ">=1.9.1"
-    popper.js "^1.12.9"
 
 brace-expansion@^1.1.7:
   version "1.1.8"
@@ -4134,7 +4122,7 @@ jquery-ui@^1.12.1:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
 
-"jquery@2 - 3", jquery@>=1.10, jquery@>=1.5, jquery@>=1.7, "jquery@>=1.7.1 <4.0.0", jquery@>=1.8, jquery@>=1.9.1, jquery@^3.2, jquery@^3.2.1:
+"jquery@2 - 3", jquery@>=1.10, jquery@>=1.5, jquery@>=1.7, "jquery@>=1.7.1 <4.0.0", jquery@>=1.8, jquery@^3.2, jquery@^3.2.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
 
@@ -5515,10 +5503,6 @@ pngquant-bin@^3.0.0:
 popper.js@^1.12:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.13.0.tgz#e1e7ff65cc43f7cf9cf16f1510a75e81f84f4565"
-
-popper.js@^1.12.9:
-  version "1.12.9"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.9.tgz#0dfbc2dff96c451bb332edcfcfaaf566d331d5b3"
 
 portfinder@^1.0.9:
   version "1.0.13"

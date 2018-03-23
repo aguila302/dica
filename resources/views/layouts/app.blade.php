@@ -10,80 +10,25 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="hold-transition skin-purple sidebar-mini">
     <div id="app">
-        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-            <div class="container">
-                <img class="mr-3" src="{{ asset('images/image001.png') }}" alt="" width="150" height="48">
-                {{-- <img class="mr-3" src="https://getbootstrap.com/assets/brand/bootstrap-outline.svg" alt="" width="48" height="48"> --}}
-                <a class="navbar-brand" href="{{ url('/inicio') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <a class="navbar-brand" href="{{ url('/inicio') }}">
-                    Diagnostico carretero
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
-                        @guest
-                        <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                        <li><a class="nav-link" href="{{ route('register') }}">Register</a></li>
-                        @else
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Configuraciones
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown03">
-                                <a class="dropdown-item" href="{{ route('ajustes.index') }}" href="#">Usuarios</a>
-                            </div>
-                        </li>
-                        @endguest
-                    </ul>
-                </div>
+        <div class="wrapper">
+            @include('layouts.app.header')
+            @section('sidebar')
+                @include('layouts.app.sidebar')
+            @show
+            <div class="content-wrapper">
+                <section class="content-header">
+                    @yield('content-header')
+                </section>
+                <section class="content">
+                    @include('flash::message')
+                    @yield('content')
+                </section>
             </div>
-        </nav>
-        @auth
-            <div class="container" style="margin-top: 10px;">
-                <div class="nav-scroller bg-white box-shadow">
-                    <nav class="nav nav-underline">
-                        <a class="nav-link {{ Request::is(['autopistas*', 'inicio']) ? 'alert alert-secondary' : '' }}" href="{{ route('autopistas.index') }}" >Autopistas</a>
-                    </nav>
-                </div>
-            </div>
-        @endauth
-        <main main role="main" class="container">
-            <div class="my-3 p-3 bg-white rounded box-shadow">
-                {{-- @include('flash::message') --}}
-                @yield('content')
-            </div>
-        {{--     <footer class="pt-4 my-md-5 pt-md-5 border-top">
-                <p class="float-right"><a href="#">Back to top</a></p>
-                <p>&copy; 2017-2018 CalyMayor <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-            </footer> --}}
-        </main>
+            @include('layouts.app.footer')
+        </div>
     </div>
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-        $('div.alert').not('.alert-important').delay(3000).fadeOut(150);
-    </script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
