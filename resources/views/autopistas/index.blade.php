@@ -46,7 +46,6 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    {{ $autopistas->links() }}
                     </table>
                 </div>
             </div>

@@ -7,6 +7,7 @@ namespace Tests;
 use App\Exceptions\Handler;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
+use Tests\Helpers\ApiTokens;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -47,5 +48,14 @@ abstract class TestCase extends BaseTestCase
     {
         $this->app->instance(ExceptionHandler::class, $this->oldExceptionHandler);
         return $this;
+    }
+
+    protected function setUpTraits()
+    {
+        parent::setUpTraits();
+        $uses = array_flip(class_uses_recursive(static::class));
+        if (isset($uses[ApiTokens::class])) {
+            $this->createPassportClients();
+        }
     }
 }

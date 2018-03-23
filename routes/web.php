@@ -20,10 +20,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
+    /* Rutas para autopistas. */
     Route::get('inicio', 'HomeController@index')->name('inicio');
     Route::get('autopistas', 'AutopistaController@index')->name('autopistas.index');
     Route::get('autopistas/registrar', 'AutopistaController@create')->name('autopistas.create')->middleware('role:admin');
     Route::post('autopistas', 'AutopistaController@store')->name('autopistas.store')->middleware('role:admin');
     Route::get('autopistas/{autopista}/modificar', 'AutopistaController@edit')->name('autopistas.edit')->middleware('role:admin');
     Route::patch('autopistas/{autopista}', 'AutopistaController@update')->name('autopistas.update')->middleware('role:admin');
+
+    /* Rutas para ajustes. */
+    Route::get('ajustes', 'UsuarioAutopistasntroller@index')->name('ajustes.index')->middleware('role:admin');
 });

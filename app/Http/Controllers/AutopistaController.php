@@ -19,9 +19,10 @@ class AutopistaController extends Controller
         $user = Auth::user();
         $rol  = $user->hasRole('admin');
         if ($rol) {
-            $autopistas = Autopista::latest()->paginate(10);
+            $autopistas = Autopista::latest()->get();
         } else {
-            $autopistas = Autopista::with('usuarios')->paginate(5);
+            $autopistas = $user->autopistas;
+            // $autopistas = Autopista::with('usuarios')->paginate(5);
         }
         return view('autopistas.index')->withAutopistas($autopistas);
     }

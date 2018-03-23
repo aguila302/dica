@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Autopista;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -18,9 +19,15 @@ class HomeController extends Controller
         $user = Auth::user();
         $rol  = $user->hasRole('admin');
         if ($rol) {
-            $autopistas = Autopista::latest()->paginate(10);
+            $autopistas = Autopista::latest()->get();
         } else {
-            $autopistas = Autopista::with('usuarios')->paginate(5);
+            $autopistas = $user->autopistas;
+            // dd($autopistas->get;
+            // $autopistas = User::with(['autopistas' => function ($query) use ($user) {
+            //     $query->where('user_id', $user->id);
+            // }])->paginate();
+
+            // $autopistas = Autopista::with('usuarios')->paginate(5);
         }
         return view('autopistas.index')->withAutopistas($autopistas);
     }

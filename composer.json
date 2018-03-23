@@ -12,6 +12,7 @@
         "laravel/framework": "5.6.*",
         "laravel/passport": "^5.0",
         "laravel/tinker": "~1.0",
+        "spatie/laravel-fractal": "^5.3",
         "spatie/laravel-permission": "^2.9"
     },
     "require-dev":
@@ -42,7 +43,10 @@
         {
             "Tests\\": "tests/"
         },
-        "files": ["tests/Utilities/Functions.php"]
+        "files": ["tests/Utilities/Functions.php"],
+        "classmap": [
+            "tests/helpers"
+        ]
     },
     "extra":
     {

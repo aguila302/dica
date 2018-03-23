@@ -47,6 +47,14 @@
                                 </form>
                             </div>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Configuraciones
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown03">
+                                <a class="dropdown-item" href="{{ route('ajustes.index') }}" href="#">Usuarios</a>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>
@@ -56,8 +64,7 @@
             <div class="container" style="margin-top: 10px;">
                 <div class="nav-scroller bg-white box-shadow">
                     <nav class="nav nav-underline">
-
-                        <a class=" alert alert-secondary nav-link {{ Request::is('autopistas*') ? 'alert alert-secondary' : '' }}" href="{{ route('autopistas.index') }}" >Autopistas</a>
+                        <a class="nav-link {{ Request::is(['autopistas*', 'inicio']) ? 'alert alert-secondary' : '' }}" href="{{ route('autopistas.index') }}" >Autopistas</a>
                     </nav>
                 </div>
             </div>
