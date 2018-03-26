@@ -1,51 +1,62 @@
 @extends('layouts.app')
+@section('content-header')
+    <h1 class="page-header"><a href="{{ route('autopistas.index') }}">Autopistas</a></h1>
+@endsection
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card card-default">
-                @if ($errors->any())
-                    <div class="alert alert-danger" role="alert">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                <div class="card-header">Nueva autopista</div>
-                <div class="card-body">
-                    <form method="POST" action="{{ route('autopistas.store') }}">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" name="nombre" class="form-control" id="nombre" aria-describedby="nombreHelp"
-                                placeholder="Nombre de la autopista" value="{{ old('nombre') }}">
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="">Cadenamiento inicial</span>
-                                </div>
-                                <input type="text" class="form-control" name="cadenamiento_inicial_km" value="{{ old('cadenamiento_inicial_km') }}">
-                                <span class="align-self-center" style="margin: 0 10px 0 10px;">+</span>
-                                <input type="text" class="form-control" name="cadenamiento_inicial_m" value="{{ old('cadenamiento_inicial_m') }}">
-                            </div>
-                        </div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Nueva autopista</h3>
+            </div>
 
+            <div class="box-body">
+                @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                <form method="POST" action="{{ route('autopistas.store') }}" role="form">
+                    {{ csrf_field() }}
+                    <div class="box-body">
+                         <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" name="nombre" class="form-control" placeholder="Nombre de la autopista" value="{{ old('nombre') }}">
+                        </div>
                         <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="">Cadenamiento final</span>
+                            <label>Cadenamiento inicial:</label>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <input type="text" placeholder="Kilometros" class="form-control" name="cadenamiento_inicial_km" value="{{ old('cadenamiento_inicial_km') }}">
                                 </div>
-                                <input type="text" class="form-control" name="cadenamiento_final_km" value="{{ old('cadenamiento_final_km') }}">
-                                <span class="align-self-center" style="margin: 0 10px 0 10px;">+</span>
-                                <input type="text" class="form-control" name="cadenamiento_final_m" value="{{ old('cadenamiento_final_m') }}">
+                                <div class="col-xs-6">
+                                    <input type="text" placeholder="Metros" class="form-control" name="cadenamiento_inicial_m" value="{{ old('cadenamiento_inicial_m') }}">
+                                </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </form>
-                </div>
+                        <div class="form-group">
+                            <label>Cadenamiento final:</label>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <input type="text" placeholder="Kilometros" class="form-control" name="cadenamiento_final_km" value="{{ old('cadenamiento_final_km') }}">
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="text" placeholder="Metros" class="form-control" name="cadenamiento_final_m" value="{{ old('cadenamiento_final_m') }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary pull-right">
+                                <i class="fa fa-btn fa-check-circle"> Guardar</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

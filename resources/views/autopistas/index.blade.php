@@ -2,7 +2,9 @@
 @section('content-header')
     <h1>
         Autopistas
-        <a href="#" class="btn btn-success pull-right"> <i class="fa fa-plus"></i> Nueva autopista</a>
+        @role('admin')
+            <a href="{{ route('autopistas.create') }}" class="btn btn-success pull-right"> <i class="fa fa-plus"></i> Nueva autopista</a>
+        @endrole
     </h1>
 @endsection
 @section('content')
@@ -10,7 +12,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-body">
-                <table id="example2" class="table table-bordered table-hover">
+                <table id="example2" class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -42,5 +44,4 @@
         </div>
     </div>
 </div>
-
 @endsection

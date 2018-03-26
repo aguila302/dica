@@ -1,6 +1,8 @@
 <header class="main-header">
-    <a class="logo" href="/home">
-        <span class="logo-lg"><b>ERP-</b>NAOBATEC</span>
+    <a class="logo" href="/inicio">
+        {{-- <span class="logo-lg"><b>DICA-</b>Diagnostico Carretero</span> --}}
+        <small>Diagnostico Carretero</small>
+        {{-- <p class="navbar-text">Signed in as Mark Otto</p> --}}
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
         <a class="sidebar-toggle" data-toggle="push-menu" href="#" role="button">
@@ -10,58 +12,18 @@
         </a>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                <li class="dropdown messages-menu">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope-o">
-                        </i>
-                        <span class="label label-success">
-                            4
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">
-                            You have 4 messages
-                        </li>
-                        <li>
-                            <ul class="menu">
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img alt="User Image" class="img-circle" src="{{ asset('images/user3-128x128.jpg') }}">
-                                            </img>
-                                        </div>
-                                        <h4>
-                                            Support Team
-                                            <small>
-                                                <i class="fa fa-clock-o">
-                                                </i>
-                                                5 mins
-                                            </small>
-                                        </h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="footer">
-                            <a href="#">
-                                See All Messages
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 <li class="dropdown user user-menu">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <img alt="User Image" class="user-image" src="{{ asset('images/user3-128x128.jpg') }}">
                             <span class="hidden-xs">
-                                Alexander Pierce
+                                {{ Auth::user()->name }}
                             </span>
                         </img>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
                             <img alt="User Image" class="img-circle" src="{{ asset('images/user3-128x128.jpg') }}">
-                                <p>Alexander Pierce - Web Developer<small>Member since Nov. 2012</small></p>
+                                <p>{{ Auth::user()->name }}<small>{{ Auth::user()->getRoleNames()->implode(',') }}</small></p>
                             </img>
                         </li>
                         <li class="user-footer">

@@ -24,6 +24,7 @@
                 <section class="content">
                     @include('flash::message')
                     @yield('content')
+
                 </section>
             </div>
             @include('layouts.app.footer')
