@@ -20,5 +20,8 @@
         "vue": "^2.5.7",
         "admin-lte": "^2.4.3",
         "font-awesome": "^4.7.0"
+    },
+    "dependencies": {
+        "bootstrap-select": "^1.12.4"
     }
 }

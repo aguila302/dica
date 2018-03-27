@@ -28,6 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::get('autopistas/{autopista}/modificar', 'AutopistaController@edit')->name('autopistas.edit')->middleware('role:admin');
     Route::patch('autopistas/{autopista}', 'AutopistaController@update')->name('autopistas.update')->middleware('role:admin');
 
-    /* Rutas para ajustes. */
-    Route::get('ajustes', 'UsuarioAutopistasntroller@index')->name('ajustes.index')->middleware('role:admin');
+    /* Rutas para usuarios. */
+    Route::get('usuarios', 'UsuarioController@index')->name('usuarios.index')->middleware('role:admin');
+    Route::get('usuarios/registrar', 'UsuarioController@create')->name('usuarios.create')->middleware('role:admin');
+    Route::post('usuarios', 'UsuarioController@store')->name('usuarios.store')->middleware('role:admin');
+    Route::get('usuarios/{user}/modificar', 'UsuarioController@edit')->name('usuarios.edit')->middleware('role:admin');
+    Route::patch('usuarios/{user}', 'UsuarioController@update')->name('usuarios.update')->middleware('role:admin');
+    Route::delete('usuarios/{user}/autopistas/{autopista}', 'UsuarioAutopistasController@delete')->name('usuario-autopista-delete')->middleware('role:admin');
 });

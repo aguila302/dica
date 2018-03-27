@@ -7,7 +7,7 @@
     <div class="col-md-10 col-md-offset-1">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Nueva autopista</h3>
+                <h3 class="box-title">Actualizar autopista</h3>
             </div>
             <div class="box-body">
                 @if ($errors->any())

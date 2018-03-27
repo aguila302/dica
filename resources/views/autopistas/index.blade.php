@@ -12,7 +12,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-body">
-                <table id="example2" class="table table-bordered">
+                <table id="example2" class="table table-hover">
                     <thead>
                         <tr>
                             <th>Nombre</th>

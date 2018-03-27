@@ -1,38 +1,44 @@
 @extends('layouts.app')
+@section('content-header')
+    <h1>
+        Usuarios
+        @role('admin')
+            <a href="{{ route('usuarios.create') }}" class="btn btn-success pull-right"> <i class="fa fa-plus"></i> Nuevo usuario</a>
+        @endrole
+    </h1>
+@endsection
 @section('content')
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card bg-light mb-3">
-                <div class="card-header">Usuarios</div>
-                <div class="card-body">
-                    @role('admin')
-                        <a href="#" class="btn btn-primary pull-right">Nuevo usuario</a>
-                    @endrole
-                </div>
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-                    <table class="table">
-                        <thead class="p-3 mb-2 bg-light text-dark">
-                            <tr>
-                                <th>#</th>
-                                <th>Autopista</th>
-                                <th>Cadenamiento inicial</th>
-                                <th>Cadenamiento final</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-body">
+                <table id="example2" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($usuarios as $usuario)
+                        <tr>
+                            <td>
+                                {{ $usuario->name }}
+                            </td>
+                            <td>{{ $usuario->email }}</td>
+                            <td>
+                                <a href="{{ route('usuarios.edit', $usuario) }}">Editar</a>
+                            </td>
+                            <td>
+                                <a class="#" href="#item-3-1">Eliminar</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>
 @endsection
 

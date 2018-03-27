@@ -8,6 +8,12 @@
                     <span>Autopistas</span>
                 </a>
             </li>
+            <li class="{{ Request::is('usuarios*') ? 'active' : '' }}">
+                <a href="{{ route('usuarios.index') }}">
+                    <i class="fa fa-fw fa-users"></i>
+                    <span>Usuarios</span>
+                </a>
+            </li>
         </ul>
     </section>
 </aside>
