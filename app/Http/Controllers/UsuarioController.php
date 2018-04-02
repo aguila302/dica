@@ -38,14 +38,17 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required',
-            'email'  => 'required|email',
+            'nombre'   => 'required',
+            'email'    => 'required|email|unique:users',
+            'username' => 'required|string|unique:users',
+            'password' => 'required|string|confirmed',
         ]);
 
         $user           = new User;
         $user->name     = $request->nombre;
         $user->email    = $request->email;
-        $user->password = str_random(10);
+        $user->username = $request->username;
+        $user->password = bcrypt($request->password);
         $user->save();
 
         return redirect('/usuarios');
