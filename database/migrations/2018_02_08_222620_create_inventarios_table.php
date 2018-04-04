@@ -44,14 +44,14 @@ class CreateInventariosTable extends Migration
 
             $table->foreign('subelemento_id')
                 ->references('id')->on('sub_elementos')
-                ->onDelete('cascade');
+                ->onUpdate('cascade');
 
             $table->foreign('condicion_id')
                 ->references('id')->on('condicions')
                 ->onDelete('cascade');
 
             $table->foreign('carril_id')
-                ->references('id')->on('carrils')
+                ->references('id')->on('carriles')
                 ->onDelete('cascade');
 
             $table->timestamps();

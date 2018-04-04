@@ -13,7 +13,7 @@ class CreateCarrilsTable extends Migration
      */
     public function up()
     {
-        Schema::create('carrils', function (Blueprint $table) {
+        Schema::create('carriles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descripcion', 150);
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateCarrilsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carrils');
+        Schema::dropIfExists('carriles');
     }
 }

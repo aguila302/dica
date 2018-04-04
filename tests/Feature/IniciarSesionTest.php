@@ -16,7 +16,7 @@ class IniciarSesionTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->visit('/login')
-            ->type($user->email, 'email')
+            ->type($user->username, 'username')
             ->type('secret', 'password')
             ->press('Iniciar sesión')
             ->seePageIs('inicio');
@@ -28,7 +28,7 @@ class IniciarSesionTest extends TestCase
 
         $this->withExceptionHandling();
         $this->visit('/login')
-            ->type('ponches.ah@gmail.com', 'email')
+            ->type('ponches uyuy', 'username')
             ->type('ponches', 'password')
             ->press('Iniciar sesión')
             ->seePageIs('/login');
