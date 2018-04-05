@@ -50,7 +50,7 @@
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary pull-right">
-                                <i class="fa fa-btn fa-check-circle"> Guardar</i>
+                                Guardar
                             </button>
                         </div>
                     </div>

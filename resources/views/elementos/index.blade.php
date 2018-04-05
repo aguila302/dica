@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content-header')
     <h1>
-        Autopistas
+        Elementos
         @role('admin')
-            <a href="{{ route('autopistas.create') }}" class="btn btn-success pull-right"> <i class="fa fa-plus"></i> Nueva autopista</a>
+            <a href="{{ route('elementos.create') }}" class="btn btn-success pull-right"> <i class="fa fa-plus"></i> Nuevo elemento</a>
         @endrole
     </h1>
 @endsection
@@ -16,25 +16,19 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Cadenamiento inicial</th>
-                            <th>Cadenamiento final</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($autopistas as $autopista)
+                    @foreach ($elementos as $elemento)
                         <tr>
                             <td>
-                               <a href="#">
-                                    {{ $autopista->nombre }}
-                                </a>
-                            </td>
-                            <td>{{ $autopista->cadenamiento_inicial_km }} + {{ $autopista->cadenamiento_inicial_m }}</td>
-                            <td>{{ $autopista->cadenamiento_final_km }} + {{ $autopista->cadenamiento_final_m }}</td>
-                            <td>
-                                <a class="btn btn-link" href="{{ route('autopistas.edit', $autopista) }}">Editar</a>
+                                {{ $elemento->descripcion }}
                             </td>
                             <td>
-                                <form action="{{ route('autopistas.delete', $autopista) }}" method="POST">
+                                <a class="btn btn-link" href="{{ route('elementos.edit', $elemento) }}">Editar</a>
+                            </td>
+                            <td>
+                                <form action="{{ route('elementos.delete', $elemento) }}" method="POST">
                                     @csrf
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-link">Eliminar</button>

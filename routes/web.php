@@ -40,4 +40,12 @@ Route::middleware('auth')->group(function () {
     Route::post('usuarios/{user}/modificar', 'UsuarioAutopistasController@store')->name('usuario-autopista-store')->middleware('role:admin');
 
     Route::delete('usuarios/{user}/autopistas/{autopista}', 'UsuarioAutopistasController@delete')->name('usuario-autopista-delete')->middleware('role:admin');
+
+    /* Rutas para elementos */
+    Route::get('elementos', 'ElementoController@index')->name('elementos.index')->middleware('role:admin');
+    Route::get('elementos/registrar', 'ElementoController@create')->name('elementos.create')->middleware('role:admin');
+    Route::post('elementos', 'ElementoController@store')->name('elementos.store')->middleware('role:admin');
+    Route::get('elementos/{elemento}/modificar', 'ElementoController@edit')->name('elementos.edit')->middleware('role:admin');
+    Route::patch('elementos/{elemento}', 'ElementoController@update')->name('elementos.update')->middleware('role:admin');
+    Route::delete('elementos/{elemento}/eliminar', 'ElementoController@destroy')->name('elementos.delete')->middleware('role:admin');
 });

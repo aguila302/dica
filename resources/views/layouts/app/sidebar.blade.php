@@ -14,6 +14,12 @@
                     <span>Usuarios</span>
                 </a>
             </li>
+            <li class="{{ Request::is('elementos*') ? 'active' : '' }}">
+                <a href="{{ route('elementos.index') }}">
+                    <i class="fa fa-fw fa-retweet"></i>
+                    <span>Elementos</span>
+                </a>
+            </li>
         </ul>
     </section>
 </aside>
