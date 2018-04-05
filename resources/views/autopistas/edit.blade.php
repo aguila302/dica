@@ -21,7 +21,7 @@
                 </div>
                 @endif
                 <form method="POST" action="{{ route('autopistas.update', $autopista) }}">
-                    {{ csrf_field() }}
+                    @csrf
                     {{ method_field('PATCH') }}
                     <div class="box-body">
                          <div class="form-group">

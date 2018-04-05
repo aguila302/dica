@@ -31,10 +31,14 @@
                             <td>{{ $autopista->cadenamiento_inicial_km }} + {{ $autopista->cadenamiento_inicial_m }}</td>
                             <td>{{ $autopista->cadenamiento_final_km }} + {{ $autopista->cadenamiento_final_m }}</td>
                             <td>
-                                <a href="{{ route('autopistas.edit', $autopista) }}">Editar</a>
+                                <a class="btn btn-info" href="{{ route('autopistas.edit', $autopista) }}">Editar</a>
                             </td>
                             <td>
-                                <a class="#" href="#item-3-1">Eliminar</a>
+                                <form action="{{ route('autopistas.delete', $autopista) }}" method="POST">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

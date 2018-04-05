@@ -22,7 +22,7 @@
                 </div>
                 @endif
                 <form method="POST" action="{{ route('autopistas.store') }}" role="form">
-                    {{ csrf_field() }}
+                    @csrf
                     <div class="box-body">
                          <div class="form-group">
                             <label for="nombre">Nombre:</label>

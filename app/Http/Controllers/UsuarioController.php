@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Autopista;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UsuarioController extends Controller
 {
@@ -37,6 +38,7 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+        /* Validamos los datos del formualrio.  */
         $request->validate([
             'nombre'   => 'required',
             'email'    => 'required|email|unique:users',
@@ -44,6 +46,7 @@ class UsuarioController extends Controller
             'password' => 'required|string|confirmed',
         ]);
 
+        /*Registramos al usuario en el origen de datos. */
         $user           = new User;
         $user->name     = $request->nombre;
         $user->email    = $request->email;
@@ -51,6 +54,7 @@ class UsuarioController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
+        flash('El usuario se registro exitosamente.')->important();
         return redirect('/usuarios');
     }
 
@@ -62,12 +66,19 @@ class UsuarioController extends Controller
      */
     public function edit(User $user)
     {
-        $autopistas          = Autopista::orderBy('nombre', 'ASC')->get();
+        /* Obtenemos el catalogo de autopistas. */
+        $autopistas = Autopista::orderBy('nombre', 'ASC')->get();
+
+        /* Obtenemos las autopistas asignadas a tal usuario. */
         $autopistasAsignadas = $user->autopistas->sortBy('nombre');
+
+        $autopistasOrdenados = $autopistas->reject(function ($autopista) use ($autopistasAsignadas) {
+            return $autopistasAsignadas->contains($autopista);
+        });
 
         return view('usuarios.edit', [
             'user'                 => $user,
-            'autopistas'           => $autopistas,
+            'autopistas'           => $autopistasOrdenados,
             'autopistas_asignadas' => $autopistasAsignadas,
         ]);
     }
@@ -81,16 +92,39 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        /* Validamos los datos del formualrio.  */
         $request->validate([
-            'nombre' => 'required',
-            'email'  => 'required|email',
+            'nombre'          => 'required',
+            'email'           => [
+                'required',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'username'        => 'required',
+            'password_actual' => 'required|current_password',
+            'password'        => 'required|string|confirmed',
         ]);
 
+        /* Actualizamos al usuario en el origen de datos. */
         $user->name     = $request->nombre;
         $user->email    = $request->email;
-        $user->password = str_random(10);
-        $user->save();
+        $user->username = $request->username;
+        $user->password = bcrypt($request->password);
 
+        $user->save();
+        flash('El usuario se actualizo exitosamente.')->important();
         return redirect('/usuarios');
+    }
+
+    /**
+     * Elimina un usuario del origen de datos.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
+        $user->delete();
+        flash('El usuario se elimino exitosamente.')->important();
+        return back();
     }
 }

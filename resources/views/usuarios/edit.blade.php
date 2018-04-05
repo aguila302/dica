@@ -11,18 +11,17 @@
             </div>
             <div class="box-body">
                 @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
-
                 <form method="POST" action="{{ route('usuarios.update', $user) }}">
-                    {{ csrf_field() }}
+                    @csrf
                     {{ method_field('PATCH') }}
                     <div class="box-body">
                          <div class="form-group">
@@ -34,8 +33,24 @@
                             <input type="email" name="email" class="form-control" value="{{ $user->email }}">
                         </div>
                         <div class="form-group">
+                            <label>Usuario:</label>
+                            <input type="text" name="username" class="form-control" value="{{ $user->username }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Contraseña actual:</label>
+                            <input type="password" name="password_actual" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Contraseña:</label>
+                            <input type="password" name="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirmar contraseña:</label>
+                            <input type="password" class="form-control" name="password_confirmation">
+                        </div>
+                        <div class="form-group">
                             <button type="submit" class="btn btn-primary pull-right">
-                                <i class="fa fa-btn fa-check-circle"> Guardar</i>
+                                Guardar
                             </button>
                         </div>
                     </div>
@@ -43,37 +58,28 @@
             </div>
         </div>
 
-        <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Asignar autopistas a este usuario</h3>
-                </div>
-
-                <form class="form-horizontal" method="POST" action="">
-                    {{ csrf_field() }}
-
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Asignar autopistas a este usuario</h3>
+            </div>
+            <div class="box-body">
+                <form method="POST" action="{{ route('usuario-autopista-store', $user) }}">
+                    @csrf
                     <div class="box-body">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
-                        <select name="ubicaciones[]" class="form-control selectpicker" multiple data-actions-box="true">
-                            @foreach($autopistas as $autopista)
-                                <option value="{{ $autopista->id }}">{{ $autopista->nombre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Asignar autopistas</button>
+                        <div class="form-group">
+                            <select name="autopistas" class="form-control selectpicker">
+                                @foreach($autopistas as $autopista)
+                                    <option value="{{ $autopista->id }}">{{ $autopista->nombre }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary pull-right">Asignar autopistas</button>
+                        </div>
                     </div>
                 </form>
             </div>
+        </div>
 
         <div class="box box-info">
             <div class="box-header with-border">
@@ -107,3 +113,10 @@
     </div>
 </div>
 @endsection
+{{-- @section('scripts')
+    <script>
+        $('.selectpicker').selectpicker({
+            noneSelectedText: 'Autopistas',
+        });
+    </script>
+@endsection --}}

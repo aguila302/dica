@@ -22,7 +22,6 @@ class AutopistaController extends Controller
             $autopistas = Autopista::latest()->get();
         } else {
             $autopistas = $user->autopistas;
-            // $autopistas = Autopista::with('usuarios')->paginate(5);
         }
         return view('autopistas.index')->withAutopistas($autopistas);
     }
@@ -45,6 +44,7 @@ class AutopistaController extends Controller
      */
     public function store(Request $request)
     {
+        /* Validamos los datos del formulario. */
         $request->validate([
             'nombre'                  => 'required',
             'cadenamiento_inicial_km' => 'required|numeric|min:0|digits:3',
@@ -53,6 +53,7 @@ class AutopistaController extends Controller
             'cadenamiento_final_m'    => 'required|numeric|min:0|digits:3',
         ]);
 
+        /* Registramos la autopista en el origen de datos. */
         $autopista                          = new Autopista;
         $autopista->nombre                  = $request->nombre;
         $autopista->cadenamiento_inicial_km = $request->cadenamiento_inicial_km;
@@ -61,6 +62,7 @@ class AutopistaController extends Controller
         $autopista->cadenamiento_final_m    = $request->cadenamiento_final_m;
         $autopista->save();
 
+        flash('La autopista se registro exitosamente.')->important();
         return redirect('/autopistas');
     }
 
@@ -95,6 +97,7 @@ class AutopistaController extends Controller
      */
     public function update(Request $request, Autopista $autopista)
     {
+        /* Validamos los datos del formulario. */
         $request->validate([
             'nombre'                  => 'required',
             'cadenamiento_inicial_km' => 'required|numeric|min:0|digits:3',
@@ -103,6 +106,7 @@ class AutopistaController extends Controller
             'cadenamiento_final_m'    => 'required|numeric|min:0|digits:3',
         ]);
 
+        /* Actualizamos la autopista en el origen de datos. */
         $autopista                          = new Autopista;
         $autopista->nombre                  = $request->nombre;
         $autopista->cadenamiento_inicial_km = $request->cadenamiento_inicial_km;
@@ -111,6 +115,7 @@ class AutopistaController extends Controller
         $autopista->cadenamiento_final_m    = $request->cadenamiento_final_m;
         $autopista->save();
 
+        flash('La autopista se actualizo exitosamente.')->important();
         return redirect('/autopistas');
     }
 
@@ -122,6 +127,9 @@ class AutopistaController extends Controller
      */
     public function destroy(Autopista $autopista)
     {
-        //
+        /* Eliminamos una autopista del origen de datos. */
+        $autopista->delete();
+        flash('La autopista se elimino exitosamente.')->important();
+        return back();
     }
 }
