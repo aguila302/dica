@@ -48,4 +48,10 @@ Route::middleware('auth')->group(function () {
     Route::get('elementos/{elemento}/modificar', 'ElementoController@edit')->name('elementos.edit')->middleware('role:admin');
     Route::patch('elementos/{elemento}', 'ElementoController@update')->name('elementos.update')->middleware('role:admin');
     Route::delete('elementos/{elemento}/eliminar', 'ElementoController@destroy')->name('elementos.delete')->middleware('role:admin');
+
+    /* Rutas para subelementos */
+    Route::get('elementos/{elemento}/componentes', 'SubelementoController@index')->name('subelementos.index')->middleware('role:admin');
+    Route::get('elementos/{elemento}/componente/registrar', 'SubelementoController@create')->name('subelementos.create')->middleware('role:admin');
+    Route::post('elementos/{elemento}/componente', 'SubelementoController@store')->name('subelementos.store')->middleware('role:admin');
+
 });

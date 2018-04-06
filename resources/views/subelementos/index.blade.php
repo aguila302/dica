@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content-header')
     <h1>
-        Elementos
+        Componentes del elemento {{ $elemento->descripcion }}
         @role('admin')
-            <a href="{{ route('elementos.create') }}" class="btn btn-success pull-right"> <i class="fa fa-plus"></i> Nuevo elemento</a>
+            <a href="{{ route('subelementos.create', $elemento) }}" class="btn btn-success pull-right"> <i class="fa fa-plus"></i> Nuevo componente</a>
         @endrole
     </h1>
 @endsection
@@ -19,23 +19,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($elementos as $elemento)
+                    @foreach ($subelementos as $subelemento)
                         <tr>
                             <td>
-                                {{ $elemento->descripcion }}
+                                {{ $subelemento->descripcion }}
                             </td>
                             <td>
-                                <a class="btn btn-link" href="{{ route('subelementos.index', $elemento) }}">Ver mas</a>
+                                {{-- <a class="btn btn-link" href="{{ route('elementos.edit', $elemento) }}">Editar</a> --}}
                             </td>
                             <td>
-                                <a class="btn btn-link" href="{{ route('elementos.edit', $elemento) }}">Editar</a>
-                            </td>
-                            <td>
-                                <form action="{{ route('elementos.delete', $elemento) }}" method="POST">
+                                {{-- <form action="{{ route('elementos.delete', $elemento) }}" method="POST">
                                     @csrf
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-link">Eliminar</button>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr>
                     @endforeach

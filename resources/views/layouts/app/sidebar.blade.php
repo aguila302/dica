@@ -20,6 +20,12 @@
                     <span>Elementos</span>
                 </a>
             </li>
+            {{-- <li class="">
+                <a href="{{ route('subelementos.index') }}">
+                    <i class="fa fa-fw fa-retweet"></i>
+                    <span>Sub elementos</span>
+                </a>
+            </li> --}}
         </ul>
     </section>
 </aside>
