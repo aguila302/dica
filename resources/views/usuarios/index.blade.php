@@ -14,12 +14,9 @@
                 <table class="table table-hover" id="example2">
                     <thead>
                         <tr>
-                            <th>
-                                Nombre
-                            </th>
-                            <th>
-                                email
-                            </th>
+                            <th>Nombre</th>
+                            <th>Usuario</th>
+                            <th>email</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -18,9 +18,11 @@ class AutopistaController extends Controller
     {
         $user = Auth::user();
         $rol  = $user->hasRole('admin');
+        /* Mostramos todas las autopistas para el rol de administrador. */
         if ($rol) {
             $autopistas = Autopista::latest()->get();
         } else {
+            /* Mostramos las autopistas asignadas de un usuario. */
             $autopistas = $user->autopistas;
         }
         return view('autopistas.index')->withAutopistas($autopistas);
@@ -45,22 +47,10 @@ class AutopistaController extends Controller
     public function store(Request $request)
     {
         /* Validamos los datos del formulario. */
-        $request->validate([
-            'nombre'                  => 'required',
-            'cadenamiento_inicial_km' => 'required|numeric|min:0|digits:3',
-            'cadenamiento_inicial_m'  => 'required|numeric|min:0|digits:3',
-            'cadenamiento_final_km'   => 'required|numeric|min:' . $request->cadenamiento_inicial_km . '|digits:3',
-            'cadenamiento_final_m'    => 'required|numeric|min:0|digits:3',
-        ]);
+        $request->validate($this->rules($request));
 
         /* Registramos la autopista en el origen de datos. */
-        $autopista                          = new Autopista;
-        $autopista->nombre                  = $request->nombre;
-        $autopista->cadenamiento_inicial_km = $request->cadenamiento_inicial_km;
-        $autopista->cadenamiento_inicial_m  = $request->cadenamiento_inicial_m;
-        $autopista->cadenamiento_final_km   = $request->cadenamiento_final_km;
-        $autopista->cadenamiento_final_m    = $request->cadenamiento_final_m;
-        $autopista->save();
+        Autopista::createAutopista($request->all());
 
         flash('La autopista se registro exitosamente.')->important();
         return redirect('/autopistas');
@@ -98,29 +88,17 @@ class AutopistaController extends Controller
     public function update(Request $request, Autopista $autopista)
     {
         /* Validamos los datos del formulario. */
-        $request->validate([
-            'nombre'                  => 'required',
-            'cadenamiento_inicial_km' => 'required|numeric|min:0|digits:3',
-            'cadenamiento_inicial_m'  => 'required|numeric|min:0|digits:3',
-            'cadenamiento_final_km'   => 'required|numeric|min:' . $request->cadenamiento_inicial_km . '|digits:3',
-            'cadenamiento_final_m'    => 'required|numeric|min:0|digits:3',
-        ]);
+        $request->validate($this->rules($request));
 
         /* Actualizamos la autopista en el origen de datos. */
-        $autopista                          = new Autopista;
-        $autopista->nombre                  = $request->nombre;
-        $autopista->cadenamiento_inicial_km = $request->cadenamiento_inicial_km;
-        $autopista->cadenamiento_inicial_m  = $request->cadenamiento_inicial_m;
-        $autopista->cadenamiento_final_km   = $request->cadenamiento_final_km;
-        $autopista->cadenamiento_final_m    = $request->cadenamiento_final_m;
-        $autopista->save();
+        $autopista->update($request->all());
 
         flash('La autopista se actualizo exitosamente.')->important();
         return redirect('/autopistas');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina una autopista en el origen de datos.
      *
      * @param  \App\Autopista  $autopista
      * @return \Illuminate\Http\Response
@@ -131,5 +109,24 @@ class AutopistaController extends Controller
         $autopista->delete();
         flash('La autopista se elimino exitosamente.')->important();
         return back();
+    }
+
+    /**
+     * Valida los datos del formulario.
+     *
+     * @param Request $request
+     *
+     */
+    public function rules($request)
+    {
+        $rules = [
+            'nombre'                  => 'required',
+            'cadenamiento_inicial_km' => 'required|numeric|min:0|digits:3',
+            'cadenamiento_inicial_m'  => 'required|numeric|min:0|digits:3',
+            'cadenamiento_final_km'   => 'required|numeric|min:' . $request->cadenamiento_inicial_km . '|digits:3',
+            'cadenamiento_final_m'    => 'required|numeric|min:0|digits:3',
+        ];
+
+        return $rules;
     }
 }

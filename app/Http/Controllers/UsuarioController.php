@@ -3,12 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Autopista;
+use App\Rules\Password;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class UsuarioController extends Controller
 {
+    protected $rules = [
+        'name'     => 'required',
+        'email'    => 'required|email|unique:users',
+        'username' => 'required|string|unique:users',
+        'password' => 'required|string|confirmed',
+    ];
+
     /**
      * Muestra un listado de los usuarios.
      *
@@ -39,20 +47,10 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         /* Validamos los datos del formualrio.  */
-        $request->validate([
-            'nombre'   => 'required',
-            'email'    => 'required|email|unique:users',
-            'username' => 'required|string|unique:users',
-            'password' => 'required|string|confirmed',
-        ]);
+        $request->validate($this->rules);
 
-        /*Registramos al usuario en el origen de datos. */
-        $user           = new User;
-        $user->name     = $request->nombre;
-        $user->email    = $request->email;
-        $user->username = $request->username;
-        $user->password = bcrypt($request->password);
-        $user->save();
+        /* Registramos al usuario en el origen de datos. */
+        User::createUsuario($request->all());
 
         flash('El usuario se registro exitosamente.')->important();
         return redirect('/usuarios');
@@ -94,23 +92,23 @@ class UsuarioController extends Controller
     {
         /* Validamos los datos del formualrio.  */
         $request->validate([
-            'nombre'          => 'required',
+            'name'            => 'required',
             'email'           => [
                 'required',
                 Rule::unique('users')->ignore($user->id),
             ],
             'username'        => 'required',
-            'password_actual' => 'required|current_password',
+            'password_actual' => ['required', 'string', new Password($user),
+                // 'password_actual' => 'required|current_password',
+
+            ],
             'password'        => 'required|string|confirmed',
         ]);
 
         /* Actualizamos al usuario en el origen de datos. */
-        $user->name     = $request->nombre;
-        $user->email    = $request->email;
-        $user->username = $request->username;
-        $user->password = bcrypt($request->password);
+        $request['password'] = bcrypt($request->password);
+        $user->update($request->all());
 
-        $user->save();
         flash('El usuario se actualizo exitosamente.')->important();
         return redirect('/usuarios');
     }

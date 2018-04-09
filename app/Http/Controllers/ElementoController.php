@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ElementoController extends Controller
 {
+    protected $rules = [
+        'descripcion' => 'required|string',
+    ];
+
     /**
      * Muestra un listado de elementos.
      *
@@ -37,9 +41,7 @@ class ElementoController extends Controller
     public function store(Request $request)
     {
         /* Validamos datos del formulario. */
-        $request->validate([
-            'descripcion' => 'required|string',
-        ]);
+        $request->validate($this->rules);
 
         /* Registramos el elemento en el origen de datos. */
         $elemento              = new Elemento;
@@ -82,9 +84,7 @@ class ElementoController extends Controller
     public function update(Request $request, Elemento $elemento)
     {
         /* Validamos los datos del formulario. */
-        $request->validate([
-            'descripcion' => 'required|string',
-        ]);
+        $request->validate($this->rules);
 
         /* Actualizamos los datos de un elemento en el origen de datos. */
         $elemento              = new Elemento;

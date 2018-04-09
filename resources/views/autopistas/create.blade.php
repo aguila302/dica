@@ -9,18 +9,8 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Nueva autopista</h3>
             </div>
-
             <div class="box-body">
-                @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
+                @include('messages.message')
                 <form method="POST" action="{{ route('autopistas.store') }}" role="form">
                     @csrf
                     <div class="box-body">

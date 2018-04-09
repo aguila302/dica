@@ -26,7 +26,7 @@
                     <div class="box-body">
                          <div class="form-group">
                             <label for="nombre">Nombre:</label>
-                            <input type="text" name="nombre" class="form-control" value="{{ $user->name }}">
+                            <input type="text" name="name" class="form-control" value="{{ $user->name }}">
                         </div>
                         <div class="form-group">
                             <label>Email:</label>

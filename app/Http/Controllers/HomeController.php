@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
 
     /**
-     * Show the application dashboard.
+     * Muestra un listado de las autopistas.
      *
      * @return \Illuminate\Http\Response
      */
@@ -22,12 +22,6 @@ class HomeController extends Controller
             $autopistas = Autopista::latest()->get();
         } else {
             $autopistas = $user->autopistas;
-            // dd($autopistas->get;
-            // $autopistas = User::with(['autopistas' => function ($query) use ($user) {
-            //     $query->where('user_id', $user->id);
-            // }])->paginate();
-
-            // $autopistas = Autopista::with('usuarios')->paginate(5);
         }
         return view('autopistas.index')->withAutopistas($autopistas);
     }
