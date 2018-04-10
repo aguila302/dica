@@ -9,6 +9,7 @@ use Tests\TestCase;
 class AsignaAutopistasAusuarioTest extends TestCase
 {
     use DatabaseMigrations;
+
     /** @test */
     public function usuario_admin_asigna_autopista_a_un_usuarioVisitante()
     {

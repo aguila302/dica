@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -13,7 +12,7 @@ class IniciarSesionTest extends TestCase
     /** @test */
     public function user_registrado_puede_iniciar_sesion()
     {
-        $user = factory(User::class)->create();
+        $user = createUserAdmin();
 
         $this->visit('/login')
             ->type($user->username, 'username')

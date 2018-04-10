@@ -6,7 +6,7 @@ use App\Elemento;
 use App\SubElemento;
 use Illuminate\Http\Request;
 
-class SubelementoController extends Controller
+class SubelementosController extends Controller
 {
 
     /**

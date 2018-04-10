@@ -17,7 +17,6 @@ trait ApiHelpers
             $token                    = $user->createToken('test')->accessToken;
             $headers['Authorization'] = 'Bearer ' . $token;
         }
-
         return $headers;
     }
 

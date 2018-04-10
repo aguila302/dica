@@ -6,7 +6,7 @@ use App\Autopista;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class VerListadoAutopistas extends TestCase
+class VerListadoAutopistasTest extends TestCase
 {
     use DatabaseMigrations;
 

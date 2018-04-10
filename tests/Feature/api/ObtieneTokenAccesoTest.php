@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\api;
 
 use App\Autopista;
 use App\User;
