@@ -15,6 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CatalogosTableSeeder::class);
         $this->call(SubElementosTableSeeder::class);
         $this->call(AutopistaUserTableSeeder::class);
-        $this->call(InventariosTableSeeder::class, 50);
+        $this->call(InventariosTableSeeder::class);
     }
 }
