@@ -19,4 +19,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/cuerpos', 'Api\CatalogosController@listCuerpos');
     Route::get('/carriles', 'Api\CatalogosController@listCarriles');
     Route::get('/condiciones', 'Api\CatalogosController@listCondiciones');
+
+    /**
+     * Ruta para registrar un levantamiento en el api.
+     */
+    Route::post('/levantamiento', 'Api\LevantamientosController@store');
 });

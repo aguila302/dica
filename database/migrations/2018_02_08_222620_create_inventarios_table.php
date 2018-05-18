@@ -22,13 +22,17 @@ class CreateInventariosTable extends Migration
             $table->unsignedInteger('condicion_id');
             $table->unsignedInteger('carril_id');
             $table->unsignedDecimal('longitud_elemento', 8, 2)->nullable();
-            $table->integer('cadenamiento_inicial')->nullable();
-            $table->integer('cadenamiento_final')->nullable();
+            $table->integer('cadenamiento_inicial_km')->nullable();
+            $table->integer('cadenamiento_inicial_m')->nullable();
+
+            $table->integer('cadenamiento_final_km')->nullable();
+            $table->integer('cadenamiento_final_m')->nullable();
+
             $table->boolean('reportar')->nullable();
             $table->text('observaciones')->nullable();
             $table->text('recomendaciones')->nullable();
-            $table->string('estatus')->nullable();
-            $table->string('seguimiento')->nullable();
+            $table->integer('estatus')->nullable();
+            $table->uuid('uuid')->unique();
 
             $table->foreign('autopista_id')
                 ->references('id')->on('autopistas')
