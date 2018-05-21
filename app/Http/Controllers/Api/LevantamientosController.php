@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Inventario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LevantamientosController extends ApiController
 {
@@ -35,6 +36,7 @@ class LevantamientosController extends ApiController
      */
     public function store(Request $request)
     {
+
         /* Validamos la información. */
         $request->validate([
             'autopista_id'            => 'exists:autopistas,id|required',
@@ -51,7 +53,17 @@ class LevantamientosController extends ApiController
             'reportar'                => 'required|boolean',
             'estatus'                 => 'required',
             'uuid'                    => 'required',
+            'foto'                    => 'required|image|mimes:png|max:2048',
         ]);
+        // dd($request->file('imagen'));
+        $nombreImagen = $request->file('foto')->getClientOriginalName();
+        // dd($nombreImagen);
+        $path = $request->file('foto')->storeAs('dicaFotos', $nombreImagen);
+
+        // $path = $request->file('foto')->storeAs(
+        //     'avatares', $request->user()->id
+        // );
+        dd($path);
 
         /**
          * Verifica que un levantamiento solo se pueda sincronizar una sola vez, si el levantamiento ya se encuentra
@@ -63,6 +75,8 @@ class LevantamientosController extends ApiController
 
         /* Registramos el levantamiento en el origen de datos. */
         $levantamiento = Inventario::creaLevantamiento($request->all());
+        // $file          = $request->file('imagen');
+        // dd($file);
         return response()
             ->json([
                 'id'         => $levantamiento->id,
