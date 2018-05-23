@@ -24,4 +24,5 @@ Route::middleware('auth:api')->group(function () {
      * Ruta para registrar un levantamiento en el api.
      */
     Route::post('/levantamiento', 'Api\LevantamientosController@store');
+    Route::post('/levantamiento/{inventario}/fotografias', 'Api\FotografiasLevantamientos@store');
 });
