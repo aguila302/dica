@@ -2,12 +2,15 @@
 
 namespace App\Exceptions;
 
+use App\Exceptions\ApiErrorResponse;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 
 class Handler extends ExceptionHandler
 {
+    use ApiErrorResponse;
     /**
      * A list of the exception types that are not reported.
      *
@@ -58,5 +61,17 @@ class Handler extends ExceptionHandler
             return back();
         }
         return parent::render($request, $exception);
+    }
+
+    protected function failedValidation($request, ValidationException $exception)
+    {
+        $param   = $exception->validator->errors()->keys()[0];
+        $message = $exception->validator->errors()->first($param);
+
+        if ($request->expectsJson()) {
+            return $this->errorValidation($message, 'parametro_invalido', $param);
+        }
+
+        return $this->convertValidationExceptionToResponse($exception, $request);
     }
 }
