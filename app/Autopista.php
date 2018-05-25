@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Inventario;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +17,16 @@ class Autopista extends Model
     public function usuarios()
     {
         return $this->belongsToMany(User::class, 'autopista_user')->withTimestamps();
+    }
+
+    /**
+     * Levantamientos que pertenecen a esta autopista.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function levantamientos()
+    {
+        return $this->hasMany(Inventario::class);
     }
 
     /**

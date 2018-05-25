@@ -15,7 +15,7 @@ class AutopistasController extends ApiController
      */
     function list(Request $request) {
         $user = $request->user();
-        $rol  = $user->hasRole('admin');
+        $rol  = $user->hasRole('administrador');
         if ($rol) {
             $autopistas = Autopista::latest()->get();
         } else {

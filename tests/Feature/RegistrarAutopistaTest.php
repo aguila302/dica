@@ -28,9 +28,9 @@ class RegistrarAutopistaTest extends TestCase
     }
 
     /** @test */
-    public function usuario_visitante_no_puede_registrar_autopista()
+    public function usuario_consulta_no_puede_registrar_autopista()
     {
-        $user = createUserVisitante();
+        $user = createUserConsulta();
 
         $this->signIn($user);
         $this->visit('/autopistas')
@@ -38,7 +38,7 @@ class RegistrarAutopistaTest extends TestCase
     }
 
     /** @test */
-    public function visitante_no_puede_ver_pagina_crear_autopista()
+    public function user_consulta_no_puede_ver_pagina_crear_autopista()
     {
         $this->withExceptionHandling()
             ->get('/autopistas/registrar')

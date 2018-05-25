@@ -13,10 +13,13 @@ class VerListadoAutopistasTest extends TestCase
     /** @test */
     public function user_admin_puede_ver_todas_las_autopistas()
     {
+        $this->withExceptionHandling();
+
         $user = createUserAdmin();
-        $this->signIn($user);
 
         $autopista = factory(Autopista::class)->create();
+
+        $this->signIn($user);
         $this->visit('/autopistas')
             ->see($autopista->nombre);
     }
@@ -25,7 +28,7 @@ class VerListadoAutopistasTest extends TestCase
     public function ver_lista_de_autopistas_asignados_a_un_usuario_autenticado()
     {
 
-        $user = createUserVisitante();
+        $user = createUserConsulta();
 
         $autopista = factory(Autopista::class)->create();
         $user->asignaAutopista($autopista);

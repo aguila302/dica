@@ -10,18 +10,18 @@ class QuitaAutopistasAusuarioTest extends TestCase
 {
     use DatabaseMigrations;
     /** @test */
-    public function usuario_admin_quita_autopista_a_un_usuarioVisitante()
+    public function usuario_admin_quita_autopista_a_un_usuario()
     {
-        $userAdmin     = createUserAdmin();
-        $userVisitante = createUserVisitante();
-        $autopista     = factory(Autopista::class)->create();
-        $userVisitante->asignaAutopista($autopista);
+        $userAdmin = createUserAdmin();
+        $user      = createUserCaptura();
+        $autopista = factory(Autopista::class)->create();
+        $user->asignaAutopista($autopista);
 
         $this->signIn($userAdmin);
-        $this->visit("/usuarios/{$userVisitante->id}/modificar");
+        $this->visit("/usuarios/{$user->id}/modificar");
         $this->press('Quitar');
 
-        $autopistasAsignadas = $userVisitante->autopistas;
+        $autopistasAsignadas = $user->autopistas;
         $this->assertFalse($autopistasAsignadas->contains($autopista));
 
     }

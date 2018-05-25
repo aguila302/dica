@@ -17,7 +17,7 @@ class AutopistaController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $rol  = $user->hasRole('admin');
+        $rol  = $user->hasRole('administrador');
         /* Mostramos todas las autopistas para el rol de administrador. */
         if ($rol) {
             $autopistas = Autopista::latest()->get();

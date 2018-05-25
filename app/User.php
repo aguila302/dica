@@ -84,5 +84,6 @@ class User extends Authenticatable
         $user           = new static($data);
         $user->password = bcrypt($data['password']);
         $user->save();
+        $user->assignRole($data['rol']);
     }
 }

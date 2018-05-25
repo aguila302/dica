@@ -2,7 +2,7 @@
 @section('content-header')
     <h1>
         Autopistas
-        @role('admin')
+        @role('administrador')
             <a href="{{ route('autopistas.create') }}" class="btn btn-success pull-right"> <i class="fa fa-plus"></i> Nueva autopista</a>
         @endrole
     </h1>
@@ -24,8 +24,8 @@
                     @foreach ($autopistas as $autopista)
                         <tr>
                             <td>
-                               <a href="#">
-                                    {{ $autopista->nombre }}
+                               <a href="{{ route('levantamientos.index', $autopista) }}">
+                                    <strong>{{ $autopista->nombre }}</strong>
                                 </a>
                             </td>
                             <td>{{ $autopista->cadenamiento_inicial_km }} + {{ $autopista->cadenamiento_inicial_m }}</td>

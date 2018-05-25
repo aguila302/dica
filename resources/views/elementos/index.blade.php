@@ -2,7 +2,7 @@
 @section('content-header')
     <h1>
         Elementos
-        @role('admin')
+        @role('administrador')
             <a href="{{ route('elementos.create') }}" class="btn btn-success pull-right"> <i class="fa fa-plus"></i> Nuevo elemento</a>
         @endrole
     </h1>

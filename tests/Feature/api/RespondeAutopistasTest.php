@@ -37,11 +37,11 @@ class RespondeAutopistasTest extends TestCase
     }
 
     /** @test */
-    public function user_visitante_puede_obtener_autopistas_asignadas()
+    public function user_captura_puede_obtener_autopistas_asignadas()
     {
         $this->withExceptionHandling();
 
-        $userVisitante = createUserVisitante();
+        $userVisitante = createUserCaptura();
         $autopista     = factory(Autopista::class)->create();
         $userVisitante->asignaAutopista($autopista);
 

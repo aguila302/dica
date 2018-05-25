@@ -5,25 +5,29 @@ use Spatie\Permission\Models\Role;
 
 function createUserAdmin()
 {
-    $roleAdmin = Role::create(['name' => 'admin']);
-    // $permission = Permission::create(['name' => 'ver autopista']);
-    // $role->givePermissionTo($permission);
+    $roleAdmin = Role::create(['name' => 'administrador']);
 
     $user = factory(User::class)->create();
-    $user->assignRole('admin');
+    $user->assignRole('administrador');
     return $user;
 }
 
-function createUserVisitante()
+function createUserConsulta()
 {
 
-    $role = Role::create(['name' => 'visitante']);
-    // $permission = Permission::create(['name' => 'ver autopista']);
-    // $role->givePermissionTo($permission);
+    $roleConsulta = Role::create(['name' => 'consulta']);
 
     $user = factory(User::class)->create();
-    $user->assignRole('visitante');
+    $user->assignRole('consulta');
     return $user;
 }
 
-// function createPermission
+function createUserCaptura()
+{
+
+    $role = Role::create(['name' => 'capturista']);
+
+    $user = factory(User::class)->create();
+    $user->assignRole('capturista');
+    return $user;
+}

@@ -7,6 +7,7 @@ use App\Rules\Password;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Role;
 
 class UsuarioController extends Controller
 {
@@ -15,6 +16,7 @@ class UsuarioController extends Controller
         'email'    => 'required|email|unique:users',
         'username' => 'required|string|unique:users',
         'password' => 'required|string|confirmed',
+        'rol'      => 'required|exists:roles,name',
     ];
 
     /**
@@ -35,7 +37,9 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('usuarios.create');
+        $roles = Role::all();
+
+        return view('usuarios.create')->withRoles($roles);
     }
 
     /**
@@ -46,6 +50,7 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+
         /* Validamos los datos del formualrio.  */
         $request->validate($this->rules);
 

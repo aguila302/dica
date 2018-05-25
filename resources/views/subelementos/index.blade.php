@@ -2,7 +2,7 @@
 @section('content-header')
     <h1>
         Componentes del elemento {{ $elemento->descripcion }}
-        @role('admin')
+        @role('administrador')
             <a href="{{ route('subelementos.create', $elemento) }}" class="btn btn-success pull-right"> <i class="fa fa-plus"></i> Nuevo componente</a>
         @endrole
     </h1>

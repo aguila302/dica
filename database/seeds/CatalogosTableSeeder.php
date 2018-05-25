@@ -15,8 +15,9 @@ class CatalogosTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->rolesUsuarios();
-        $this->rolesUsuariosVisitante();
+        $this->roleAdministrador();
+        $this->roleConsulta();
+        $this->roleCapturista();
         $this->creaAutopistas();
         $this->creaElementos();
         $this->creaCarriles();
@@ -26,28 +27,40 @@ class CatalogosTableSeeder extends Seeder
         factory(App\User::class, 6)->create();
     }
 
-    public function rolesUsuarios()
+    public function roleAdministrador()
     {
         $userAdmin = factory(App\User::class)->create([
             'name'     => 'Usuario administrador',
-            'username' => 'useradmin',
+            'username' => 'admin',
             'email'    => 'admin@calymayor.com.mx',
-            'password' => bcrypt('admin'),
+            'password' => bcrypt('develop'),
         ]);
 
-        $userAdmin->assignRole('admin');
+        $userAdmin->assignRole('administrador');
     }
 
-    public function rolesUsuariosVisitante()
+    public function roleConsulta()
     {
         $userAdmin = factory(App\User::class)->create([
-            'name'     => 'Usuario visitante',
-            'username' => 'uservisitante',
-            'email'    => 'visitante@calymayor.com.mx',
-            'password' => bcrypt('visitante'),
+            'name'     => 'Usuario consulta',
+            'username' => 'consulta',
+            'email'    => 'consulta@calymayor.com.mx',
+            'password' => bcrypt('develop'),
         ]);
 
-        $userAdmin->assignRole('visitante');
+        $userAdmin->assignRole('consulta');
+    }
+
+    public function roleCapturista()
+    {
+        $userAdmin = factory(App\User::class)->create([
+            'name'     => 'Usuario capturista',
+            'username' => 'capturista',
+            'email'    => 'capturista@calymayor.com.mx',
+            'password' => bcrypt('develop'),
+        ]);
+
+        $userAdmin->assignRole('capturista');
     }
 
     public function creaAutopistas()

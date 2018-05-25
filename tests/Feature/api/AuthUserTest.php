@@ -33,11 +33,11 @@ class AuthUserTest extends TestCase
     }
 
     /** @test */
-    public function user_visitante_puede_autenticarse_en_el_api()
+    public function user_consulta_puede_autenticarse_en_el_api()
     {
         $this->withExceptionHandling();
 
-        $userVisitante = createUserVisitante();
+        $userVisitante = createUserConsulta();
         $autopistas    = factory(Autopista::class)->create();
 
         $this->get('api/user', $this->headers($userVisitante))

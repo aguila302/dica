@@ -29,6 +29,15 @@
                         </div>
 
                         <div class="form-group">
+                            <label>Rol de usuario:</label>
+                            <select name="rol" class="form-control">
+                                @foreach($roles as $role)
+                                    <option value="{{ $role->name }}">{{ ucfirst($role->name) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label>Contraseña:</label>
                             <input type="password" name="password" class="form-control" placeholder="Password" value="{{ old('password') }}">
                         </div>

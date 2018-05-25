@@ -11,18 +11,20 @@ class AsignaAutopistasAusuarioTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function usuario_admin_asigna_autopista_a_un_usuarioVisitante()
+    public function usuario_admin_puede_asignar_autopistas()
     {
-        $userAdmin     = createUserAdmin();
-        $userVisitante = createUserVisitante();
-        $autopista     = factory(Autopista::class)->create();
+        $this->withExceptionHandling();
+
+        $userAdmin    = createUserAdmin();
+        $userConsulta = createUserConsulta();
+        $autopista    = factory(Autopista::class)->create();
 
         $this->signIn($userAdmin);
-        $this->visit("/usuarios/{$userVisitante->id}/modificar");
+        $this->visit("/usuarios/{$userConsulta->id}/modificar");
         $this->select($autopista->id, 'autopistas');
         $this->press('Asignar');
 
-        $autopistasAsignadas = $userVisitante->autopistas;
+        $autopistasAsignadas = $userConsulta->autopistas;
         $this->assertTrue($autopistasAsignadas->contains($autopista));
 
     }

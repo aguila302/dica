@@ -20,7 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
-    Route::group(['middleware' => ['role:admin|visitante']], function () {
+    Route::group(['middleware' => ['role:administrador|consulta|capturista']], function () {
         /* Rutas para autopistas. */
         Route::get('inicio', 'HomeController@index')->name('inicio');
         Route::get('autopistas', 'AutopistaController@index')->name('autopistas.index');
@@ -54,6 +54,12 @@ Route::middleware('auth')->group(function () {
         Route::get('elementos/{elemento}/componentes', 'SubelementosController@index')->name('subelementos.index');
         Route::get('elementos/{elemento}/componente/registrar', 'SubelementosController@create')->name('subelementos.create');
         Route::post('elementos/{elemento}/componente', 'SubelementosController@store')->name('subelementos.store');
+
+        /* Rutas subrecursos de levantamientos. */
+        Route::prefix('autopista/{autopista}')->group(function () {
+            Route::get('levantamientos', 'LevantamientosController@index')->name('levantamientos.index');
+        });
+
     });
 
 });

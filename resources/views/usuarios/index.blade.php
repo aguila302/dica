@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content-header')
 <h1>Usuarios
-    @role('admin')
+    @role('administrador')
         <a class="btn btn-success pull-right" href="{{ route('usuarios.create') }}"><i class="fa fa-plus"></i> Nuevo usuario</a>
     @endrole
 </h1>

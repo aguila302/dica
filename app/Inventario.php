@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Cuerpo;
+use App\Elemento;
 use App\Fotografia;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +14,30 @@ class Inventario extends Model
     ];
 
     protected $fillable = ['autopista_id', 'elemento_id', 'subelemento_id', 'cuerpo_id', 'condicion_id', 'carril_id', 'longitud_elemento', 'cadenamiento_inicial_km', 'cadenamiento_inicial_m', 'cadenamiento_final_km', 'cadenamiento_final_m', 'reportar', 'estatus', 'uuid'];
+
+    /**
+     * Elemento asignado a este levantamiento.
+     */
+    public function elemento()
+    {
+        return $this->belongsTo(Elemento::class);
+    }
+
+    /**
+     * Sub elemento asignado a este levantamiento.
+     */
+    public function subelemento()
+    {
+        return $this->belongsTo(SubElemento::class);
+    }
+
+    /**
+     * Cuerpo asignado a este levantamiento.
+     */
+    public function cuerpo()
+    {
+        return $this->belongsTo(Cuerpo::class);
+    }
 
     /**
      * Fotografias de este levantamiento.

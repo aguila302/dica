@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $rol  = $user->hasRole('admin');
+        $rol  = $user->hasRole('administrador');
         if ($rol) {
             $autopistas = Autopista::latest()->get();
         } else {

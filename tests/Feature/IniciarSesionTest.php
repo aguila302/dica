@@ -12,11 +12,13 @@ class IniciarSesionTest extends TestCase
     /** @test */
     public function user_registrado_puede_iniciar_sesion()
     {
+        $this->withExceptionHandling();
+
         $user = createUserAdmin();
 
         $this->visit('/login')
             ->type($user->username, 'username')
-            ->type('secret', 'password')
+            ->type('develop', 'password')
             ->press('Iniciar sesión')
             ->seePageIs('inicio');
     }
