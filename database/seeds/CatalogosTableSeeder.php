@@ -32,7 +32,7 @@ class CatalogosTableSeeder extends Seeder
             'name'     => 'Usuario administrador',
             'username' => 'useradmin',
             'email'    => 'admin@calymayor.com.mx',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+            'password' => bcrypt('admin'),
         ]);
 
         $userAdmin->assignRole('admin');
@@ -44,7 +44,7 @@ class CatalogosTableSeeder extends Seeder
             'name'     => 'Usuario visitante',
             'username' => 'uservisitante',
             'email'    => 'visitante@calymayor.com.mx',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+            'password' => bcrypt('visitante'),
         ]);
 
         $userAdmin->assignRole('visitante');
