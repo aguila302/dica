@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function () {
         /* Rutas subrecursos de levantamientos. */
         Route::prefix('autopista/{autopista}')->group(function () {
             Route::get('levantamientos', 'LevantamientosController@index')->name('levantamientos.index');
+            Route::get('levantamientos/{inventario}', 'LevantamientosController@show')->name('levantamiento.show');
         });
 
     });

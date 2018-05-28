@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Autopista;
+use App\Condicion;
 use App\Cuerpo;
 use App\Elemento;
 use App\Fotografia;
@@ -14,6 +16,14 @@ class Inventario extends Model
     ];
 
     protected $fillable = ['autopista_id', 'elemento_id', 'subelemento_id', 'cuerpo_id', 'condicion_id', 'carril_id', 'longitud_elemento', 'cadenamiento_inicial_km', 'cadenamiento_inicial_m', 'cadenamiento_final_km', 'cadenamiento_final_m', 'reportar', 'estatus', 'uuid'];
+
+    /**
+     * Autopista asignado a este levantamiento.
+     */
+    public function autopista()
+    {
+        return $this->belongsTo(Autopista::class);
+    }
 
     /**
      * Elemento asignado a este levantamiento.
@@ -37,6 +47,22 @@ class Inventario extends Model
     public function cuerpo()
     {
         return $this->belongsTo(Cuerpo::class);
+    }
+
+    /**
+     * Condicion asignado a este levantamiento.
+     */
+    public function condicion()
+    {
+        return $this->belongsTo(Condicion::class);
+    }
+
+    /**
+     * Carril asignado a este levantamiento.
+     */
+    public function carril()
+    {
+        return $this->belongsTo(Carril::class);
     }
 
     /**

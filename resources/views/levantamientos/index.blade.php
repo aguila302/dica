@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.autopista')
 @section('content-header')
     <h1>
-        Levantamientos
+        Levantamientos de la autopista {{ $autopista->nombre }}
     </h1>
 @endsection
 @section('content')
@@ -16,6 +16,7 @@
                             <th>Elemento</th>
                             <th>Sub elemento</th>
                             <th>Cuerpo</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,8 +28,9 @@
                                 </td>
                                 <td>{{ $levantamiento->subelemento->descripcion }}</td>
                                 <td>{{ $levantamiento->cuerpo->descripcion }}</td>
-                                {{-- <td>{{ $autopista->cadenamiento_inicial_km }} + {{ $autopista->cadenamiento_inicial_m }}</td> --}}
-                                {{-- <td>{{ $autopista->cadenamiento_final_km }} + {{ $autopista->cadenamiento_final_m }}</td> --}}
+                                <td>
+                                <a class="btn btn-link" href="{{ route('levantamiento.show', [$autopista, $levantamiento]) }}">Ver mas...</a>
+                            </td>
                             </tr>
                         @endforeach
                     </tbody>

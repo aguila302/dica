@@ -42,7 +42,7 @@ class FotografiasLevantamientos extends Controller
 
         // return $request->file('foto')->getClientOriginalName();
         $nombreImagen          = $request->file('foto')->getClientOriginalName();
-        $pathDestinoFotografia = $request->file('foto')->storeAs('dicaFotos', $nombreImagen);
+        $pathDestinoFotografia = $request->file('foto')->storeAs('dicaFotos', $nombreImagen, 'public');
 
         /* Registra las fotografias del levantamiento.  */
         $fotografia = $inventario->fotografias()->create([

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Autopista;
+use App\Inventario;
 use Illuminate\Http\Request;
 
 class LevantamientosController extends Controller
@@ -15,7 +16,10 @@ class LevantamientosController extends Controller
     public function index(Autopista $autopista)
     {
         $levantamientos = $autopista->levantamientos;
-        return view('levantamientos.index')->withLevantamientos($levantamientos);
+        return view('levantamientos.index', [
+            'levantamientos' => $levantamientos,
+            'autopista'      => $autopista,
+        ]);
     }
 
     /**
@@ -45,9 +49,15 @@ class LevantamientosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Autopista $autopista, Inventario $inventario)
     {
-        //
+        $fotografias = $inventario->fotografias;
+
+        return view('levantamientos.show', [
+            'autopista'   => $autopista,
+            'inventario'  => $inventario,
+            'fotografias' => $fotografias,
+        ]);
     }
 
     /**
