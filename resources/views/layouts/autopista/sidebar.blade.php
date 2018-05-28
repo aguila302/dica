@@ -5,10 +5,7 @@
                 <a href="{{ route('autopistas.index') }}"><i class="fa fa-fw fa-arrow-left"></i>Regresar a autopistas</a>
             </li>
         </ul>
-
         <ul class="sidebar-menu" data-widget="tree">
-            {{-- <li class="header">NAVEGACIÓN PRINCIPAL</li> --}}
-
             <li class="{{ Request::is("autopista/{$autopista->id}/levantamientos*") ? ' active' : '' }}">
                 <a href="{{ route('levantamientos.index', $autopista) }}">
                     <i class="fa fa-fw fa-retweet"></i>
