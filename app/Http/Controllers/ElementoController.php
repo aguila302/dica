@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Clase generada para agrupar solicitudes HTTP de elementos.
+ * Autor: Alfonso Hernández Montoya.
+ * Fecha de creación: 24 Mayo 2018.
+ * Descripción: Clase para controlar las peticiones HTTP de un elemento.
+ * Modifico: Alfonso Hernández Montoya.
+ * Fecha modificación: 24 Mayo 2018.
+ */
+
 namespace App\Http\Controllers;
 
 use App\Elemento;
@@ -50,17 +59,6 @@ class ElementoController extends Controller
 
         flash('El elemento se registro exitosamente.')->important();
         return redirect('/elementos');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

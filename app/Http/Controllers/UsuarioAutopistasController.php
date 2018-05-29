@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Clase generada para agrupar solicitudes HTTP de usuarios y autopistas.
+ * Autor: Alfonso Hernández Montoya.
+ * Fecha de creación: 24 Mayo 2018.
+ * Descripción: Clase para controlar las peticiones HTTP de un usuario y una autopista.
+ * Modifico: Alfonso Hernández Montoya.
+ * Fecha modificación: 24 Mayo 2018.
+ */
+
 namespace App\Http\Controllers;
 
 use App\Autopista;

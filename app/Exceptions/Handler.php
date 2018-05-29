@@ -4,9 +4,11 @@ namespace App\Exceptions;
 
 use App\Exceptions\ApiErrorResponse;
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Spatie\Permission\Exceptions\UnauthorizedException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -57,8 +59,14 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
             flash('El usuario no tiene los roles correctos')->error();
-            // flash()->overlay('You are now a Laracasts member!', 'Yay');
             return back();
+        }
+
+        if ($exception instanceof ModelNotFoundException) {
+            $exception = new NotFoundHttpException($exception->getMessage(), $exception);
+            // dd($exception);
+            // return \Response::json(['error' => 'Model not found'], 404);
+            return response()->view('errors.message', ['message' => $exception->getMessage()], 404);
         }
         return parent::render($request, $exception);
     }

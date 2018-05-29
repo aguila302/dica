@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Clase generada para el modelo App\User.
+ * Autor: Alfonso Hernández Montoya.
+ * Fecha de creación: 24 Mayo 2018.
+ * Descripción: Clase que representa el modelo App\User.
+ * Modifico: Alfonso Hernández Montoya.
+ * Fecha modificación: 24 Mayo 2018.
+ */
+
 namespace App;
 
 use App\Autopista;

@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Clase generada para agrupar solicitudes HTTP de autopistas.
+ * Autor: Alfonso Hernández Montoya.
+ * Fecha de creación: 24 Mayo 2018.
+ * Descripción: Clase para controlar las peticiones HTTP de una autopista.
+ * Modifico: Alfonso Hernández Montoya.
+ * Fecha modificación: 24 Mayo 2018.
+ */
+
 namespace App\Http\Controllers;
 
 use App\Autopista;
@@ -54,17 +63,6 @@ class AutopistaController extends Controller
 
         flash('La autopista se registro exitosamente.')->important();
         return redirect('/autopistas');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Autopista  $autopista
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Autopista $autopista)
-    {
-        //
     }
 
     /**

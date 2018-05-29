@@ -1,10 +1,18 @@
 <?php
 
+/**
+ * Clase generada para agrupar solicitudes HTTP de levantamientos.
+ * Autor: Alfonso Hernández Montoya.
+ * Fecha de creación: 24 Mayo 2018.
+ * Descripción: Clase para controlar las peticiones HTTP de un levantamiento.
+ * Modifico: Alfonso Hernández Montoya.
+ * Fecha modificación: 24 Mayo 2018.
+ */
+
 namespace App\Http\Controllers;
 
 use App\Autopista;
 use App\Inventario;
-use Illuminate\Http\Request;
 
 class LevantamientosController extends Controller
 {
@@ -23,27 +31,6 @@ class LevantamientosController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -55,42 +42,9 @@ class LevantamientosController extends Controller
 
         return view('levantamientos.show', [
             'autopista'   => $autopista,
-            'inventario'  => $inventario,
+            'inventario'  => Inventario::findOrFail($inventario->id),
             'fotografias' => $fotografias,
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
