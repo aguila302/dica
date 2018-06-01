@@ -14,6 +14,7 @@
                 <table class="table table-hover" id="example2">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Nombre</th>
                             <th>Usuario</th>
                             <th>email</th>
@@ -22,6 +23,7 @@
                     <tbody>
                         @foreach ($usuarios as $user)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             <td>
                                 {{ $user->name }}
                             </td>

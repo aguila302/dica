@@ -3,12 +3,9 @@
 @section('content-header')
     <h1>
         Levantamientos de la autopista {{ $autopista->nombre }}
-        @role('administrador')
-            <a href="{{ route('reporte.index', $autopista) }}" class="btn btn-success pull-right"> <i class="fa fa-fw fa-table"></i> Reporte PDF</a>
-        @endrole
     </h1>
 @endsection
-@section('content')
+
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
@@ -33,15 +30,13 @@
                                 <td>{{ $levantamiento->subelemento->descripcion }}</td>
                                 <td>{{ $levantamiento->cuerpo->descripcion }}</td>
                                 <td>
-                                <a class="btn btn-link" href="{{ route('levantamiento.show', [$autopista, $levantamiento]) }}">Ver mas...</a>
                             </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {{ $levantamientos->links() }}
             </div>
         </div>
     </div>
 </div>
-@endsection
+

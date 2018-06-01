@@ -15,6 +15,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Nombre</th>
                             <th>Cadenamiento inicial</th>
                             <th>Cadenamiento final</th>
@@ -23,6 +24,7 @@
                     <tbody>
                     @foreach ($autopistas as $autopista)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             <td>
                                <a href="{{ route('levantamientos.index', $autopista) }}">
                                     <strong>{{ $autopista->nombre }}</strong>
@@ -44,6 +46,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                {{ $autopistas->links() }}
             </div>
         </div>
     </div>

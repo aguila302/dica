@@ -27,7 +27,7 @@ class ElementoController extends Controller
      */
     public function index()
     {
-        $elementos = Elemento::latest()->get();
+        $elementos = Elemento::latest()->paginate(10);
         return view('elementos.index')->withElementos($elementos);
     }
 

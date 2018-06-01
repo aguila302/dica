@@ -1,7 +1,7 @@
 @extends('layouts.autopista')
 @section('content-header')
     <h1>
-        Detalle de levantamiento de la autpista {{ $inventario->autopista->nombre }}
+        Detalle de levantamiento de la autopista {{ $inventario->autopista->nombre }}
     </h1>
 @endsection
 @section('content')

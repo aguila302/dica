@@ -29,10 +29,10 @@ class AutopistaController extends Controller
         $rol  = $user->hasRole('administrador');
         /* Mostramos todas las autopistas para el rol de administrador. */
         if ($rol) {
-            $autopistas = Autopista::latest()->get();
+            $autopistas = Autopista::latest()->paginate(10);
         } else {
             /* Mostramos las autopistas asignadas de un usuario. */
-            $autopistas = $user->autopistas;
+            $autopistas = $user->autopistas()->paginate(10);
         }
         return view('autopistas.index')->withAutopistas($autopistas);
     }

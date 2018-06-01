@@ -10,7 +10,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="hold-transition skin-purple sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
     <div id="app">
         <div class="wrapper">
             @include('layouts.app.header')

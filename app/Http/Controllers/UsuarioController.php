@@ -20,6 +20,9 @@ use Spatie\Permission\Models\Role;
 
 class UsuarioController extends Controller
 {
+    public $usuario;
+    public $nombreAutopista;
+
     protected $rules = [
         'name'     => 'required',
         'email'    => 'required|email|unique:users',
@@ -47,7 +50,6 @@ class UsuarioController extends Controller
     public function create()
     {
         $roles = Role::all();
-
         return view('usuarios.create')->withRoles($roles);
     }
 
@@ -113,8 +115,6 @@ class UsuarioController extends Controller
             ],
             'username'        => 'required',
             'password_actual' => ['required', 'string', new Password($user),
-                // 'password_actual' => 'required|current_password',
-
             ],
             'password'        => 'required|string|confirmed',
         ]);

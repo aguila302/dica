@@ -26,7 +26,7 @@ class SubelementosController extends Controller
      */
     public function index(Elemento $elemento)
     {
-        $subelementos = $elemento->subElementos()->orderBy('descripcion', 'ASC')->get();
+        $subelementos = $elemento->subElementos()->orderBy('descripcion', 'ASC')->paginate(10);
         return view('subelementos.index', [
             'subelementos' => $subelementos,
             'elemento'     => $elemento,

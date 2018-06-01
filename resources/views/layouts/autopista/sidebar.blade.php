@@ -12,14 +12,6 @@
                     <span>Levantamientos</span>
                 </a>
             </li>
-
-            <li class="{{ Request::is("autopista/{$autopista->id}/reportes*") ? ' active' : '' }}">
-                <a href="#">
-                    <i class="fa fa-fw fa-table"></i>
-                    <span>Repotes</span>
-                </a>
-            </li>
-
         </ul>
     </section>
 </aside>

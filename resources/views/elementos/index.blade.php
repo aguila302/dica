@@ -15,12 +15,14 @@
                 <table id="example2" class="table table-hover">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Nombre</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach ($elementos as $elemento)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             <td>
                                 {{ $elemento->descripcion }}
                             </td>
@@ -41,6 +43,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                {{ $elementos->links() }}
             </div>
         </div>
     </div>

@@ -27,6 +27,7 @@ class VerListadoAutopistasTest extends TestCase
     /** @test */
     public function ver_lista_de_autopistas_asignados_a_un_usuario_autenticado()
     {
+        $this->withExceptionHandling();
 
         $user = createUserConsulta();
 

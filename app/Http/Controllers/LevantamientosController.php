@@ -23,7 +23,7 @@ class LevantamientosController extends Controller
      */
     public function index(Autopista $autopista)
     {
-        $levantamientos = $autopista->levantamientos;
+        $levantamientos = $autopista->levantamientos()->paginate(10);
         return view('levantamientos.index', [
             'levantamientos' => $levantamientos,
             'autopista'      => $autopista,

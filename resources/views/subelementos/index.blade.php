@@ -15,29 +15,22 @@
                 <table id="example2" class="table table-hover">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Nombre</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach ($subelementos as $subelemento)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             <td>
                                 {{ $subelemento->descripcion }}
-                            </td>
-                            <td>
-                                {{-- <a class="btn btn-link" href="{{ route('elementos.edit', $elemento) }}">Editar</a> --}}
-                            </td>
-                            <td>
-                                {{-- <form action="{{ route('elementos.delete', $elemento) }}" method="POST">
-                                    @csrf
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-link">Eliminar</button>
-                                </form> --}}
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
+                {{ $subelementos->links() }}
             </div>
         </div>
     </div>
