@@ -1,11 +1,11 @@
 @extends('layouts.autopista')
 
-@section('content-header')
-    <h1>
-        Levantamientos de la autopista {{ $autopista->nombre }}
-    </h1>
-@endsection
-
+            <div class="box-header with-border small-box bg-yellow text-justify">
+                <img src="{{ asset('images/image001.png') }}" alt="" width="140" style="height: auto; position: relative;">
+                <br>
+                <h4>Levantamientos carreteros de la autopista {{ $autopista->nombre }}</h4>
+                <hr>
+            </div>
 <div class="row">
     <div class="col-xs-12">
         <div class="box">

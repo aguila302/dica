@@ -21,14 +21,13 @@ class FotografiasLevantamientos extends Controller
             'foto' => 'required|image|mimes:png|max:2048',
         ]);
 
-        // return $request->file('foto')->getClientOriginalName();
         $nombreImagen          = $request->file('foto')->getClientOriginalName();
         $pathDestinoFotografia = $request->file('foto')->storeAs('dicaFotos', $nombreImagen, 'public');
 
         /* Registra las fotografias del levantamiento.  */
         $fotografia = $inventario->fotografias()->create([
-            'levantamiento_id' => $inventario->id,
-            'fotografia'       => $pathDestinoFotografia,
+            'inventario_id' => $inventario->id,
+            'fotografia'    => $pathDestinoFotografia,
         ]);
         return response()
             ->json([
