@@ -55,6 +55,9 @@ Route::middleware('auth')->group(function () {
         Route::get('elementos/{elemento}/componente/registrar', 'SubelementosController@create')->name('subelementos.create');
         Route::post('elementos/{elemento}/componente', 'SubelementosController@store')->name('subelementos.store');
 
+        /* Rutas para el modulo de seguridad. */
+        Route::get('seguridad', 'SeguridadController@index')->name('seguridad.index');
+
         /* Rutas subrecursos de levantamientos. */
         Route::prefix('autopista/{autopista}')->group(function () {
             Route::get('levantamientos', 'LevantamientosController@index')->name('levantamientos.index');

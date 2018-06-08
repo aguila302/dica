@@ -20,12 +20,15 @@
                     <span>Elementos</span>
                 </a>
             </li>
-            {{-- <li class="">
-                <a href="{{ route('subelementos.index') }}">
-                    <i class="fa fa-fw fa-retweet"></i>
-                    <span>Sub elementos</span>
+            <li class="{{ Request::is('seguridad*') ? 'active' : '' }}">
+                <a href="{{ route('seguridad.index') }}">
+                    <i class="fa fa-fw fa-expeditedssl"></i>
+                    <span>Seguridad</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
-            </li> --}}
+            </li>
         </ul>
     </section>
 </aside>
