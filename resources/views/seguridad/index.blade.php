@@ -4,6 +4,11 @@
     <h1 class="page-header"><a href="{{ route('seguridad.index') }}">Clientes del API</a></h1>
 @endsection
 @section('content')
-    <passport-clients></passport-clients>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <passport-clients></passport-clients>
+            <passport-personal-access-tokens></passport-personal-access-tokens>
+        </div>
+    </div>
 @endsection
 

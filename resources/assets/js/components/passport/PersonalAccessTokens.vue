@@ -6,28 +6,27 @@
 
 <template>
     <div>
-        <div>
-            <div class="card card-default">
-                <div class="card-header">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span>
-                            Personal Access Tokens
-                        </span>
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Personal Access Tokens</h3>
+                <p class="pull-right">
+                    <a class="btn btn-success btn-sm ad-click-event" tabindex="-1" @click="showCreateTokenForm">
+                        <i class="fa fa-plus"></i>
+                        Create New Token
+                    </a>
+                </p>
+            </div>
 
-                        <a class="action-link" tabindex="-1" @click="showCreateTokenForm">
-                            Create New Token
-                        </a>
-                    </div>
-                </div>
+            <div class="box-body">
 
                 <div class="card-body">
                     <!-- No Tokens Notice -->
-                    <p class="mb-0" v-if="tokens.length === 0">
+                    <div class="alert alert-warning" v-if="tokens.length === 0">
                         You have not created any personal access tokens.
-                    </p>
+                    </div>
 
                     <!-- Personal Access Tokens -->
-                    <table class="table table-borderless mb-0" v-if="tokens.length > 0">
+                    <table class="table table-hover" v-if="tokens.length > 0">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -38,12 +37,12 @@
                         <tbody>
                             <tr v-for="token in tokens">
                                 <!-- Client Name -->
-                                <td style="vertical-align: middle;">
+                                <td>
                                     {{ token.name }}
                                 </td>
 
                                 <!-- Delete Button -->
-                                <td style="vertical-align: middle;">
+                                <td>
                                     <a class="action-link text-danger" @click="revoke(token)">
                                         Delete
                                     </a>

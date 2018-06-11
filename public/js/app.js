@@ -49366,11 +49366,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     /*
@@ -49523,112 +49518,105 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-md-10 col-md-offset-1" }, [
-      _c("div", { staticClass: "box box-primary" }, [
-        _c("div", { staticClass: "box-header with-border" }, [
-          _c("h3", { staticClass: "box-title" }, [_vm._v("Clientes Oauth")]),
-          _vm._v(" "),
+  return _c("div", [
+    _c("div", { staticClass: "box box-primary" }, [
+      _c("div", { staticClass: "box-header with-border" }, [
+        _c("h3", { staticClass: "box-title" }, [_vm._v("Clientes Oauth")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "pull-right" }, [
           _c(
             "a",
             {
-              staticClass: "action-link",
+              staticClass: "btn btn-success btn-sm ad-click-event",
               attrs: { tabindex: "-1" },
               on: { click: _vm.showCreateClientForm }
             },
             [
-              _vm._v(
-                "\n                    Create New Client\n                "
-              )
+              _c("i", { staticClass: "fa fa-plus" }),
+              _vm._v("\n                    Nuevo cliente\n                ")
             ]
           )
-        ]),
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box-body" }, [
+        _vm.clients.length === 0
+          ? _c("div", { staticClass: "alert alert-warning" }, [
+              _vm._v(
+                "\n                No ha creado ningún cliente de OAuth.\n            "
+              )
+            ])
+          : _vm._e(),
         _vm._v(" "),
-        _c("div", { staticClass: "text-right" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "box-body" }, [
-          _vm.clients.length === 0
-            ? _c("div", { staticClass: "alert alert-warning" }, [
-                _vm._v(
-                  "\n                    No ha creado ningún cliente de OAuth.\n                "
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.clients.length > 0
-            ? _c("table", { staticClass: "table table-hover" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.clients, function(client) {
-                    return _c("tr", [
-                      _c("td", [
-                        _vm._v(
-                          "\n                                " +
-                            _vm._s(client.id) +
-                            "\n                            "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          "\n                                " +
-                            _vm._s(client.name) +
-                            "\n                            "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_c("code", [_vm._v(_vm._s(client.secret))])]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "action-link",
-                            attrs: { tabindex: "-1" },
-                            on: {
-                              click: function($event) {
-                                _vm.edit(client)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                    Edit\n                                "
-                            )
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
+        _vm.clients.length > 0
+          ? _c("table", { staticClass: "table table-hover" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.clients, function(client) {
+                  return _c("tr", [
+                    _c("td", [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(client.id) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(client.name) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_c("code", [_vm._v(_vm._s(client.secret))])]),
+                    _vm._v(" "),
+                    _c("td", [
                       _c(
-                        "td",
-                        { staticStyle: { "vertical-align": "middle" } },
+                        "a",
+                        {
+                          staticClass: "action-link",
+                          attrs: { tabindex: "-1" },
+                          on: {
+                            click: function($event) {
+                              _vm.edit(client)
+                            }
+                          }
+                        },
                         [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "action-link text-danger",
-                              on: {
-                                click: function($event) {
-                                  _vm.destroy(client)
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                    Delete\n                                "
-                              )
-                            ]
+                          _vm._v(
+                            "\n                                Edit\n                            "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "action-link text-danger",
+                          on: {
+                            click: function($event) {
+                              _vm.destroy(client)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                Delete\n                            "
                           )
                         ]
                       )
                     ])
-                  })
-                )
-              ])
-            : _vm._e()
-        ])
+                  ])
+                })
+              )
+            ])
+          : _vm._e()
       ])
     ]),
     _vm._v(" "),
@@ -50620,7 +50608,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     /*
@@ -50788,45 +50775,32 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", [
-      _c("div", { staticClass: "card card-default" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _c(
-            "div",
-            {
-              staticStyle: {
-                display: "flex",
-                "justify-content": "space-between",
-                "align-items": "center"
-              }
-            },
-            [
-              _c("span", [
-                _vm._v(
-                  "\n                        Personal Access Tokens\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "action-link",
-                  attrs: { tabindex: "-1" },
-                  on: { click: _vm.showCreateTokenForm }
-                },
-                [
-                  _vm._v(
-                    "\n                        Create New Token\n                    "
-                  )
-                ]
-              )
-            ]
-          )
+    _c("div", { staticClass: "box box-primary" }, [
+      _c("div", { staticClass: "box-header with-border" }, [
+        _c("h3", { staticClass: "box-title" }, [
+          _vm._v("Personal Access Tokens")
         ]),
         _vm._v(" "),
+        _c("p", { staticClass: "pull-right" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-success btn-sm ad-click-event",
+              attrs: { tabindex: "-1" },
+              on: { click: _vm.showCreateTokenForm }
+            },
+            [
+              _c("i", { staticClass: "fa fa-plus" }),
+              _vm._v("\n                    Create New Token\n                ")
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box-body" }, [
         _c("div", { staticClass: "card-body" }, [
           _vm.tokens.length === 0
-            ? _c("p", { staticClass: "mb-0" }, [
+            ? _c("div", { staticClass: "alert alert-warning" }, [
                 _vm._v(
                   "\n                    You have not created any personal access tokens.\n                "
                 )
@@ -50834,47 +50808,39 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _vm.tokens.length > 0
-            ? _c("table", { staticClass: "table table-borderless mb-0" }, [
+            ? _c("table", { staticClass: "table table-hover" }, [
                 _vm._m(0),
                 _vm._v(" "),
                 _c(
                   "tbody",
                   _vm._l(_vm.tokens, function(token) {
                     return _c("tr", [
-                      _c(
-                        "td",
-                        { staticStyle: { "vertical-align": "middle" } },
-                        [
-                          _vm._v(
-                            "\n                                " +
-                              _vm._s(token.name) +
-                              "\n                            "
-                          )
-                        ]
-                      ),
+                      _c("td", [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(token.name) +
+                            "\n                            "
+                        )
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticStyle: { "vertical-align": "middle" } },
-                        [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "action-link text-danger",
-                              on: {
-                                click: function($event) {
-                                  _vm.revoke(token)
-                                }
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "action-link text-danger",
+                            on: {
+                              click: function($event) {
+                                _vm.revoke(token)
                               }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                    Delete\n                                "
-                              )
-                            ]
-                          )
-                        ]
-                      )
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                    Delete\n                                "
+                            )
+                          ]
+                        )
+                      ])
                     ])
                   })
                 )
