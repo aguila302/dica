@@ -20,7 +20,7 @@
                     <span>Elementos</span>
                 </a>
             </li>
-            <li class="{{ Request::is('seguridad*') ? 'active' : '' }}">
+{{--             <li class="{{ Request::is('seguridad*') ? 'active' : '' }}">
                 <a href="{{ route('seguridad.index') }}">
                     <i class="fa fa-fw fa-expeditedssl"></i>
                     <span>Seguridad</span>
@@ -28,7 +28,7 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </section>
 </aside>

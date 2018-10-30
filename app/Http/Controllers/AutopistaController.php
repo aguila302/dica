@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AutopistaController extends Controller
 {
+
     /**
      * Muestra un listado de las autopistas.
      *
@@ -25,6 +26,8 @@ class AutopistaController extends Controller
      */
     public function index()
     {
+        $autopista = '';
+
         $user = Auth::user();
         $rol  = $user->hasRole('administrador');
         /* Mostramos todas las autopistas para el rol de administrador. */
